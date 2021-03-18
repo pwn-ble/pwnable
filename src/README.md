@@ -12,7 +12,7 @@
 tutorial: [here](https://learnraspberrypi.com/2020/08/03/build-buildroot-image-for-raspberry-pi-using-docker/)
 
 note: to alter makefile config, check out the [Makefile intro](https://www.gnu.org/software/make/manual/html_node/Introduction.html)
-1. while in this directory in your favorite IDE, run `docker build -tag pwnable:0.1`
+1. while in this directory in your favorite IDE, run `docker build --tag pwnable:0.1 .`
 2. once the image is built, run it with `docker run -it pwnable:0.1`
     - `-i` runs it in interactive mode, so you can directly access the shell
 3. inside the container, navigate to `/buildroot`
