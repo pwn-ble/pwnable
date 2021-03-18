@@ -16,7 +16,7 @@ note: to alter makefile config, check out the [Makefile intro](https://www.gnu.o
 2. once the image is built, run it with `docker run -it pwnable:0.1`
     - `-i` runs it in interactive mode, so you can directly access the shell
 3. inside the container, navigate to `/buildroot`
-4. to configure buildroot to configure building for raspberry pi 4 (ARM), run `make raspberry4_defconfig`
+4. to configure buildroot to configure building for raspberry pi 4 (ARM), run `make raspberrypi4_defconfig`
     - can optionally run `make menuconfig` to access an interactive configuration program to edit this if we need to
 5. tell buildroot to compile and generate our `.img` file
     - it should output to `/buildroot/output/images/sdcard.img`
