@@ -21,11 +21,14 @@ RUN apt-get update && apt-get install -y -q \
     patch \
     perl \
     python \
+    python3 \
     python-matplotlib \
     rsync \
     sed \
+    sudo \
     tar \
     unzip \
+    vim \
     wget \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
@@ -37,3 +40,10 @@ ENV BR_VERSION 2020.02.4
 RUN wget -qO- http://buildroot.org/downloads/buildroot-$BR_VERSION.tar.gz \
  | tar xz && mv buildroot-$BR_VERSION /buildroot
 # from https://github.com/learnraspberry/buildroot-docker/blob/master/Dockerfile, thanks
+
+# move into root's home dir
+WORKDIR /root
+# copy the C script into workdir
+COPY hello.c .
+# compile the C file within the image
+RUN gcc ./hello.c
