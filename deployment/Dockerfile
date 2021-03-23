@@ -30,6 +30,7 @@ RUN apt-get update && apt-get install -y -q \
     unzip \
     vim \
     wget \
+    whois \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*
 
@@ -40,6 +41,11 @@ ENV BR_VERSION 2020.02.4
 RUN wget -qO- http://buildroot.org/downloads/buildroot-$BR_VERSION.tar.gz \
  | tar xz && mv buildroot-$BR_VERSION /buildroot
 # from https://github.com/learnraspberry/buildroot-docker/blob/master/Dockerfile, thanks
+
+# create pwnable user and group for service daemon
+# RUN useradd -m -p <encryptedPassword> -s /bin/bash <username>
+# can use whois->mkpasswd to gen encrypted pass
+# can also use "python3 -c 'import crypt; print(crypt.crypt("password"))"" ? might be best way for us
 
 # move into root's home dir
 WORKDIR /root
