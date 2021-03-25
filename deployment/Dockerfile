@@ -42,14 +42,19 @@ RUN wget -qO- http://buildroot.org/downloads/buildroot-$BR_VERSION.tar.gz \
  | tar xz && mv buildroot-$BR_VERSION /buildroot
 # from https://github.com/learnraspberry/buildroot-docker/blob/master/Dockerfile, thanks
 
+# WORKDIR /root
+# COPY ./pass_gen.py .
+
 # create pwnable user and group for service daemon
-# RUN useradd -m -p <encryptedPassword> -s /bin/bash <username>
-# can use whois->mkpasswd to gen encrypted pass
-# can also use "python3 -c 'import crypt; print(crypt.crypt("password"))"" ? might be best way for us
+RUN useradd -m -p $(mkpasswd bonjour) -s /bin/bash pwnable
+# add new user pwnable to sudoers group 
+RUN usermod -aG sudo pwnable
+
+# WORKDIR /pwnable
 
 # move into root's home dir
-WORKDIR /root
+# WORKDIR /root
 # copy the C script into workdir
-COPY hello.c .
+# COPY hello.c .
 # compile the C file within the image
-RUN gcc ./hello.c
+# RUN gcc ./hello.c
