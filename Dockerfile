@@ -36,8 +36,6 @@ RUN apt-get update && apt-get install -y -q \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* \
     netstat \
-    
-
 
 # set locale encoding
 RUN sed -i "s/^# en_US.UTF-8/en_US.UTF-8/" /etc/locale.gen && locale-gen && update-locale LANG=en_US.UTF-8
@@ -55,12 +53,9 @@ RUN useradd -m -p $(mkpasswd bonjour) -s /bin/bash pwnable
 # add new user pwnable to sudoers group 
 RUN usermod -aG sudo pwnable
 
-
 WORKDIR /home/pwnable
 COPY hello.c .
 RUN gcc hello.c
 
 COPY ./bashScripts/lab10tmkkcc.sh .
 #CMD [ "bash, lab10tmkkcc.sh" ]
-
-
