@@ -1,0 +1,16 @@
+[Unit]
+Description=Service to manage pwnable's data and challenge delivery
+# what services should be started before this one -- After=
+
+[Service]
+# type should eventually be changed to 'forking'
+Type=Simple
+User=pwnable
+Group=pwnable
+Restart=on-failure
+RestartSec=20 5
+# path of the script to execute on startup
+ExecStart=/home/pwnable/test_service.py
+
+[Install]
+WantedBy=multi-user.target
