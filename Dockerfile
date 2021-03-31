@@ -52,15 +52,3 @@ RUN useradd -m -p $(mkpasswd bonjour) -s /bin/bash pwnable
 
 # add new user pwnable to sudoers group 
 RUN usermod -aG sudo pwnable
-
-# adding pwnable systemd service
-WORKDIR /etc/systemd/system/
-COPY service/pwnable.service .
-
-# add the service execution script
-WORKDIR /home/pwnable
-COPY service/test_service.py .
-
-# run systemd on startup
-CMD ["/sbin/init"]
-# ?? not working ??
