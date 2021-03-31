@@ -11,6 +11,11 @@ def check_password():
     strengthSlider.value = len(i) # alter the value
     strengthSlider.enabled = False # disable it again to prevent manual change
 
+def generate_password():
+    # can call the generator.py script here
+    # output to the UI
+    print("need to finish")
+
 #
 # GuiZero UI components
 #
@@ -26,5 +31,6 @@ sliderLabel = Text(app, text="password strength:")
 strengthSlider = Slider(app, enabled=False) # add slider to show pass strength
 
 # submitButton = PushButton(app, text="check password", command=check_password)
+suggestionButton = PushButton(app, text="get a password suggestion", command=generate_password) # open another textbox for length ?
 
 app.display() # show window
