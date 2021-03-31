@@ -1,0 +1,13 @@
+version: '3.8'
+
+services: 
+  os: # need an OS container
+    build: ./ # this directory
+    # volumes:
+    #   - ./:/ # going to build at the container root
+  systemd:  # need a pwnable systemd service container
+    build: ./service
+    volumes:
+      - ./service:/etc/systemd/system/ # mount our service where systemd expects them to be
+    depends_on: 
+      - os # needs an OS to run on
