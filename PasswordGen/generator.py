@@ -7,7 +7,17 @@ upperAlph = string.ascii_uppercase
 lowerAlph = string.ascii_lowercase
 
 #enter the length of the password being created
-length = int(input('Please enter length of password: '))
+while (True):
+        try:
+            length = int(input('Please enter length of password: '))
+            if (length <= 0):
+                print("Length can't be zero or negative.")
+                continue
+        except ValueError:
+            print("Please enter a number.")
+        else:
+            break
+
 pwd = ""
 
 # while loop creates password
