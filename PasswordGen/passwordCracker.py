@@ -18,5 +18,4 @@ while(guessPwd != userPwd):
     if(guessPwd == list(userPwd)):
         print("Your password is: " + "".join(guessPwd))
         print("It took %s seconds to crack this password" % (time.time() - startTime))
-        print(type(time.time()))
         break
