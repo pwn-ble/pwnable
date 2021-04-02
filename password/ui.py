@@ -1,24 +1,18 @@
 from guizero import App, PushButton, Slider, Text, TextBox
-import generator
+from generator import generator
 
 def check_password():
-    # ideally, we want to run a quick crack on the password
-        # might use a wordlist or something
-        # cant be too intensive and take a long time
-
     i = inputBox.value # get the textbox input
-
     strengthSlider.enabled = True # enable it to alter value
     strengthSlider.value = len(i) # alter the value
     strengthSlider.enabled = False # disable it again to prevent manual change
 
-def generate_password(length):
-    # call the generator.py script
-    pwd = generator.gen(length)
-    # show suggestion output label
-    suggestionOutputLabel.visible = True
-    # output to the UI
-    suggestionOutputLabel.text = f'Suggested password: {pwd}'
+def generate_password(length=15):
+    pwd = generator.gen(length) # call password synthesis function
+    suggestionOutputLabel.visible = True # show suggestion output label
+    suggestionOutputLabel.value = f'Suggested password: {pwd}' # output to the UI
+
+# def test_strength()
 
 #
 # GuiZero UI components
@@ -34,8 +28,7 @@ inputBox.update_command(check_password) # check pass strength after any input
 sliderLabel = Text(app, text="password strength:")
 strengthSlider = Slider(app, enabled=False) # add slider to show pass strength
 
-# submitButton = PushButton(app, text="check password", command=check_password)
-suggestionButton = PushButton(app, text="get a password suggestion", command=generate_password) # open another textbox for length ?
+suggestionButton = PushButton(app, text="get a password suggestion", command=generate_password) # button to get a suggested password
 
 suggestionOutputLabel = Text(app, visible=False) # initially invisible
 
