@@ -28,9 +28,10 @@ def generate_password():
 
     # while loop creates password
     while strLength > 0:
-        # randomize the character type
+        # randomize the character type with weighted values so the password is mostly letters with a few special characters and numbers, we can change this if we need to
         choices = [0, 1, 2, 3]
-        randTypeList = random.choices(choices, weights=(20, 20, 30, 30), k=1)
+        randTypeList = random.choices(choices, weights=(16, 9, 35, 40), k=1)
+        # couldn't find a way to do weighted choices without them being output to a string with only one item so this turns it into an int variable
         for i in randTypeList:
             randType = i
         
