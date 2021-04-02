@@ -59,7 +59,6 @@ def generate_password():
             print("ERROR: randType variable not working")
 
     print("Your password is: " + pwd)
-    pwdExample = pwd
     pwdSuggestion = TextBox(app, text= pwd, width= 15)
 
 
