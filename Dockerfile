@@ -56,11 +56,18 @@ RUN useradd -m -p $(mkpasswd bonjour) -s /bin/bash pwnable
 RUN usermod -aG sudo pwnable
 
 # add password generator module scripts
-# WORKDIR /home/pwnable/
-# COPY ./password/generator dest
+WORKDIR /home/pwnable/
+
+# can add .vimrc -> 'set number' to get numbered lines in vim
+
+RUN mkdir password
+COPY ./password/ ./password/
+# chmod & chgrp to 'pwnable'
 
 # add wordlists for password cracking
 WORKDIR /usr/share/
 RUN mkdir wordlists/
 # WORKDIR /usr/share/wordlists/
 # COPY pwnableCrack.lst .
+
+# chmod & chgrp to 'pwnable'
