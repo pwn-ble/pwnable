@@ -22,25 +22,18 @@ def generate_password():
     lowerAlph = string.ascii_lowercase
 
 #enter the length of the password being created
-    while (True):
-            try:
-                length = int(12)
-                if (length <= 0):
-                    print("Length can't be zero or negative.")
-                    continue
-            except ValueError:
-                print("Please enter a number.")
-            else:
-                break
+    strLength = int(12)
 
     pwd = ""
 
     # while loop creates password
-    while length > 0:
+    while strLength > 0:
         # randomize the character type
-        randType = int(random.randint(0,3))
-
-        length-=1
+        choices = [0, 1, 2, 3]
+        randTypeList = random.choices(choices, weights=(20, 20, 30, 30), k=1)
+        for i in randTypeList:
+            randType = i
+        
 
 
         if randType == 0:
@@ -57,6 +50,9 @@ def generate_password():
             pwd+=random.choice(lowerAlph)
         else:
             print("ERROR: randType variable not working")
+
+        strLength = strLength - 1  
+        print(randType)  
 
     print("Your password is: " + pwd)
     pwdSuggestion = TextBox(app, text= pwd, width= 15)
