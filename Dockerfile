@@ -17,9 +17,11 @@ RUN apt-get update && apt-get install -y -q \
     git \
     graphviz \
     gzip \
+    hydra \
     libncurses5-dev \
     locales \
     make \
+    medusa \
     patch \
     perl \
     python \
@@ -52,3 +54,13 @@ RUN useradd -m -p $(mkpasswd bonjour) -s /bin/bash pwnable
 
 # add new user pwnable to sudoers group 
 RUN usermod -aG sudo pwnable
+
+# add password generator module scripts
+# WORKDIR /home/pwnable/
+# COPY ./password/generator dest
+
+# add wordlists for password cracking
+WORKDIR /usr/share/
+RUN mkdir wordlists/
+# WORKDIR /usr/share/wordlists/
+# COPY pwnableCrack.lst .
