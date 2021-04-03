@@ -9,4 +9,4 @@ def hasher(input):
 # if the script is called from CLI w/ hash input arg
 if (len(sys.argv) > 1): # we got a password to hash
     hashed = hasher(sys.argv[1]) # get function output
-    print(f'input: {sys.argv[1]}\noutput: {hashed}') # print output
+    print(hashed) # print output

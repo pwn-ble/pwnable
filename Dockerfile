@@ -1,5 +1,5 @@
 # decide what OS to run
-FROM debian:jessie
+FROM debian:latest
 
 # all of the linux modules to include
 RUN apt-get update && apt-get install -y -q \
@@ -17,11 +17,10 @@ RUN apt-get update && apt-get install -y -q \
     git \
     graphviz \
     gzip \
-    hydra \
+    john \
     libncurses5-dev \
     locales \
     make \
-    medusa \
     patch \
     perl \
     python \
@@ -62,7 +61,7 @@ WORKDIR /home/pwnable/
 
 RUN mkdir password
 COPY ./password/ ./password/
-# chmod & chgrp to 'pwnable'
+RUN chown -R pwnable:pwnable ./
 
 # add wordlists for password cracking
 WORKDIR /usr/share/
