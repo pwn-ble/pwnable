@@ -1,5 +1,6 @@
 from guizero import App, Box, PushButton, Slider, Text, TextBox
 from generator import generator
+from hasher import hasher
 
 def check_password():
     if (len(inputBox.value) >= 6 and len(inputBox.value) <= 8): # between 5 and 8 characters
@@ -19,7 +20,9 @@ def generate_password(length=15):
     suggestionOutputLabel.value = f'Suggested password: {pwd}' # output to the UI
 
 def submit():
-    print("ok great, now what?")
+    passwd = hasher.hash(inputBox.value) # hash the input from the textbox
+    print(passwd)
+
 
 #
 # GuiZero UI components
