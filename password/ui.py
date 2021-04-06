@@ -29,17 +29,15 @@ app = App(title="password strength") # create a window
 
 inputLabel = Text(app, text="enter a password to test strength")
 
-inputContainer = Box(app)
-
-inputBox = TextBox(inputContainer) # add a textbox for input
+inputContainer = Box(app, layout="grid")
+inputBox = TextBox(inputContainer, grid=[0,1]) # add a textbox for input
 inputBox.update_command(check_password) # check pass strength after any input
-inputErrorLabel = Text(inputContainer, text="password should be 6-8 characters", color="red", visible=False)
-
+inputErrorLabel = Text(inputContainer, text="password should be 6-8 characters", grid=[0,0], color="red", visible=False)
 sliderLabel = Text(app, text="password strength:")
 strengthSlider = Slider(app, enabled=False) # add slider to show pass strength
 
+suggestionContainer = Box(app, layout="grid")
 suggestionButton = PushButton(app, text="get a password suggestion", command=generate_password) # button to get a suggested password
-
 suggestionOutputLabel = Text(app, visible=False) # initially invisible
 
 submitButton = PushButton(app, text="submit", enabled=False, command=submit) # TODO: finish with submit command
