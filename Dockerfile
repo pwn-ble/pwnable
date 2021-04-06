@@ -59,6 +59,7 @@ WORKDIR /home/pwnable/
 # copy in password cracking module
 RUN mkdir password
 COPY ./password/ ./password/
+COPY ./password/hasher/ ./password/hasher/
 RUN chown -R pwnable:pwnable ./
 
 # add wordlists for password cracking
