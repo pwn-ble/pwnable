@@ -35,6 +35,7 @@ RUN apt-get update && apt-get install -y -q \
     wget \
     whois
 
+# clean apt cache
 RUN apt-get clean
 RUN rm -rf /var/lib/apt/lists/*
 
@@ -43,22 +44,19 @@ RUN sed -i "s/^# en_US.UTF-8/en_US.UTF-8/" /etc/locale.gen && locale-gen && upda
 
 # could have this gotten from a python or node script -- need internet conn for that
 ENV BR_VERSION 2020.02.4
-
 # download buildroot cross-compiler
 RUN wget -qO- http://buildroot.org/downloads/buildroot-$BR_VERSION.tar.gz \
  | tar xz && mv buildroot-$BR_VERSION /buildroot
 
 # create pwnable user and group for service daemon
 RUN useradd -m -p $(mkpasswd bonjour) -s /bin/bash pwnable
-
 # add new user pwnable to sudoers group 
 RUN usermod -aG sudo pwnable
 
 # add password generator module scripts
 WORKDIR /home/pwnable/
-
 # can add .vimrc -> 'set number' to get numbered lines in vim
-
+# copy in password cracking module
 RUN mkdir password
 COPY ./password/ ./password/
 RUN chown -R pwnable:pwnable ./
