@@ -1,6 +1,7 @@
 import hashlib
 import platform
 import subprocess
+import path
 import sys # TODO: get argparse to work instead of sys?
 
 def hash(input):
@@ -10,10 +11,7 @@ def hash(input):
     """
 
     # call hash.c with password argument passed to this script
-    if (platform.system() == 'Windows'):
-        output = subprocess.check_output(f'.\\hasher\\a.exe {input}', shell=True)
-    else:
-        output = subprocess.check_output(f'./hasher/a.out {input}', shell=True)
+    output = subprocess.check_output(path.join('hasher', 'a.out', input), shell=True)
 
     # decode byte-encoded ouput to string
     decoded = output.decode('utf-8')
