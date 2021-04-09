@@ -15,8 +15,8 @@ def load_password_module():
     # path works if you execute the script from this directory
     if (platform.system() == 'Windows'):
         lol = subprocess.call(['python.exe', '.\\modules\\password\\ui.py'])
-    # else:
-        # lol = subprocess.call(['python3', './../password/ui.py'])
+    else:
+        lol = subprocess.call(['python3', './modules/password/ui.py'])
 
 # help command
 def load_help():

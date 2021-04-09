@@ -1,7 +1,7 @@
 import hashlib
 import platform
 import subprocess
-import path
+from os import path
 import sys # TODO: get argparse to work instead of sys?
 
 def hash(input):
@@ -9,20 +9,13 @@ def hash(input):
     takes a password string and hashes it with a salt nonce
     returns a string including the hash and salt info
     """
-
     # call hash.c with password argument passed to this script
-    output = subprocess.check_output(path.join('hasher', 'a.out', input), shell=True)
-
-    # decode byte-encoded ouput to string
-    decoded = output.decode('utf-8')
-
-    return decoded
+    return subprocess.getoutput(f'./a.out {input}')
 
 def unshadow(hash_str, file_name='fake_unshadow'):
     """
     takes a password hash and formats it for reading by John the ripper
     """
-
     # check if file_name argument has '.txt' extension
     file_name = file_name if (file_name[-4:-1] == '.txt') else f'{file_name}.txt'
 

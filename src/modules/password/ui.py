@@ -23,6 +23,8 @@ def submit():
     passwd = hasher.hash(inputBox.value) # hash the input from the textbox
     print(passwd)
 
+    # hasher.unshadow(passwd) # write hash to unshadowed john format
+
 
 #
 # GuiZero UI components
