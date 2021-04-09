@@ -1,4 +1,5 @@
 from guizero import App, Box, PushButton, Slider, Text, TextBox
+import subprocess
 from generator import generator
 from hasher import hasher
 
@@ -21,10 +22,7 @@ def generate_password(length=15):
 
 def submit():
     passwd = hasher.hash(inputBox.value) # hash the input from the textbox
-    print(passwd)
-
-    # hasher.unshadow(passwd) # write hash to unshadowed john format
-
+    hasher.unshadow(passwd) # write hash to unshadowed john format
 
 #
 # GuiZero UI components

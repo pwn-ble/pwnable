@@ -1,6 +1,7 @@
 import hashlib
 import platform
 import subprocess
+import os
 from os import path
 import sys # TODO: get argparse to work instead of sys?
 
@@ -9,10 +10,16 @@ def hash(input):
     takes a password string and hashes it with a salt nonce
     returns a string including the hash and salt info
     """
-    # call hash.c with password argument passed to this script
-    return subprocess.getoutput(f'./a.out {input}')
+    os.chdir('modules/password/hasher/') # change to the containing directory
 
-def unshadow(hash_str, file_name='fake_unshadow'):
+    # call hash.c with password argument passed to this script
+    output = subprocess.getoutput(f'./a.out {input}')
+
+    os.chdir('../../../') # change back to /src/
+
+    return output # return hashed input
+
+def unshadow(hash_str, file_name='modules/password/hasher/fake_unshadow'):
     """
     takes a password hash and formats it for reading by John the ripper
     """
@@ -29,3 +36,4 @@ def unshadow(hash_str, file_name='fake_unshadow'):
 if (len(sys.argv) > 1): # we got a password to hash
     hashed = hash(sys.argv[1]) # get function output
     print(hashed) # print output
+    # TODO: finish ??
