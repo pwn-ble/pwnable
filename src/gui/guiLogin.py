@@ -57,15 +57,20 @@ login_button = tk.Button(width=button_width,
 
 
 # display buttons
+main_menu_frame.pack()
 
-user_label.grid(row=0,column=0)
-user_entry.grid(row=0,column=1)
-passw_label.grid(row=1,column=0)
-passw_entry.grid(row=1,column=1)
+user_label.pack()
+user_entry.pack()
+passw_label.pack()
+passw_entry.pack()
+#user_label.grid(row=0,column=0)
+#user_entry.grid(row=0,column=1)
+#passw_label.grid(row=1,column=0)
+#passw_entry.grid(row=1,column=1)
 
 login_button.pack()
 
-main_menu_frame.pack()
+
 
 
 app.display()
