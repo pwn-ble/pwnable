@@ -55,17 +55,22 @@ RUN usermod -aG sudo pwnable
 
 # add password generator module scripts
 WORKDIR /home/pwnable/
+
 # can add .vimrc -> 'set number' to get numbered lines in vim
+
 # copy in password cracking module
 RUN mkdir password
-COPY ./password/ ./password/
-COPY ./password/hasher/ ./password/hasher/
+COPY ./src/modules/password/ password/
+# COPY src/password/hasher/ ./password/hasher/
 RUN chown -R pwnable:pwnable ./
 
 # add wordlists for password cracking
 WORKDIR /usr/share/
 RUN mkdir wordlists/
-# WORKDIR /usr/share/wordlists/
-# COPY pwnableCrack.lst .
 
-# chmod & chgrp to 'pwnable'
+# open up into pwnable password hashing directory
+WORKDIR /home/pwnable/password/hasher/
+# compile to a.out executable
+RUN gcc unshadow.c -lcrypt
+# change binary ownership to pwnable user/group 
+RUN chown pwnable a.out && chgrp pwnable a.out
