@@ -3,17 +3,9 @@ import subprocess
 from generator import generator
 from hasher import hasher
 
-def check_password():
-    if (len(inputBox.value) >= 6 and len(inputBox.value) <= 8): # between 5 and 8 characters
-        submitButton.enabled = True # enable the submit button
-        inputErrorLabel.visible = False
-    else:
-        inputErrorLabel.visible = True
-        submitButton.enabled = False
-
-    strengthSlider.enabled = True # enable it to alter value
-    strengthSlider.value = len(inputBox.value) # alter the value
-    strengthSlider.enabled = False # disable it again to prevent manual change
+def check_form():
+    if (len(usernameBox.value) > 0 and len(passwordBox.value) > 0): # TODO: make more complex, ensure long-ish password
+        submitButton.enabled = True
 
 def generate_password(length=15):
     pwd = generator.gen(length) # call password synthesis function
@@ -21,29 +13,33 @@ def generate_password(length=15):
     suggestionOutputLabel.value = f'Suggested password: {pwd}' # output to the UI
 
 def submit():
-    passwd = hasher.hash(inputBox.value) # hash the input from the textbox
-    hasher.unshadow(passwd) # write hash to unshadowed john format
+    """
+    will take the inputs and create a new user from them
+    """
+    passwd = hasher.hash(passwordBox.value) # hash the input from the textbox
+    # passwd1 = subprocess.run(['mkpasswd', passwordBox.value])
 
-    subprocess.call(['python3', 'modules/password/cracker/ui.py']) # TODO: os.chdir() ? app.py that calls ui.py ?
+    subprocess.Popen(['sudo -S', 'useradd', '-m', '-p', passwd, usernameBox.value], stdin='bonjour') # TODO: add a user with password that got hashed
+
+    # hasher.unshadow(passwd) # write hash to unshadowed john format
+
+    # subprocess.call(['python3', 'modules/password/cracker/ui.py']) # TODO: os.chdir() ? app.py that calls ui.py ?
 
 #
 # GuiZero UI components
 #
 
-app = App(title="password strength") # create a window
+app = App(title="create a user") # create window
 
-inputLabel = Text(app, text="enter a password to test strength")
+inputContainer = Box(app, layout="grid") # box for user, pass inputs
 
-inputContainer = Box(app, layout="grid")
-inputBox = TextBox(inputContainer, grid=[0,1]) # add a textbox for input
-inputBox.update_command(check_password) # check pass strength after any input
-inputErrorLabel = Text(inputContainer, text="password should be 6-8 characters", grid=[0,0], color="red", visible=False)
-sliderLabel = Text(app, text="password strength:")
-strengthSlider = Slider(app, enabled=False) # add slider to show pass strength
+usernameLabel = Text(inputContainer, text="username: ", grid=[0,0])
+usernameBox = TextBox(inputContainer, grid=[1,0]) # textbox input for username
+usernameBox.update_command(check_form) # ensure input is not empty
 
-suggestionContainer = Box(app, layout="grid")
-suggestionButton = PushButton(app, text="get a password suggestion", command=generate_password) # button to get a suggested password
-suggestionOutputLabel = Text(app, visible=False) # initially invisible
+passwordLabel = Text(inputContainer, text="password: ", grid=[0,1])
+passwordBox = TextBox(inputContainer, grid=[1,1]) # add a textbox for password input
+passwordBox.update_command(check_form) # check pass isnt empty
 
 submitButton = PushButton(app, text="submit", enabled=False, command=submit)
 

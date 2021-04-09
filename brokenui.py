@@ -66,6 +66,9 @@ def load_menu():
                             fg="white",
                             bg="black",
                             command=load_help)
+
+    one_button = tk.Button()
+    two_button = tk.Button()
     one_button.pack_forget()
     two_button.pack_forget()
 
