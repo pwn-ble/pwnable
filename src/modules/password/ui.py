@@ -30,18 +30,14 @@ def submit():
     b = "this is done so that your password isn't stored in plaintext for everyone to see"
     i = info(title, b)
     # another prompt
-    b = ""
+    b = "however, we are going to crack this password to show how easy it can be"
     i = info(title, b)
-    # open up a terminal
-    
     # popup with john command
-    b = ""
+    b = "the password cracking tool 'John the Ripper' is going to be used"
     i = info(title, b)
+
     # run in terminal, wait for output
-    # out = subprocess.Popen()
-    # prompt saying this is why its important
-    b = ""
-    i = info(title, b)
+    subprocess.call(['/bin/bash'])
 
     # more?
 
