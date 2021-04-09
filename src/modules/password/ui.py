@@ -24,6 +24,8 @@ def submit():
     passwd = hasher.hash(inputBox.value) # hash the input from the textbox
     hasher.unshadow(passwd) # write hash to unshadowed john format
 
+    subprocess.call(['python3', 'modules/password/cracker/ui.py']) # TODO: os.chdir() ? app.py that calls ui.py ?
+
 #
 # GuiZero UI components
 #
@@ -43,6 +45,6 @@ suggestionContainer = Box(app, layout="grid")
 suggestionButton = PushButton(app, text="get a password suggestion", command=generate_password) # button to get a suggested password
 suggestionOutputLabel = Text(app, visible=False) # initially invisible
 
-submitButton = PushButton(app, text="submit", enabled=False, command=submit) # TODO: finish with submit command
+submitButton = PushButton(app, text="submit", enabled=False, command=submit)
 
 app.display() # show window
