@@ -1,5 +1,52 @@
 # need to use pip to install the pythonping
+
+#it must be ran in sudo
+import tkinter as tk
+from tkinter import messagebox
 from pythonping import ping
+import subprocess
 
-ping ('8.8.8.8', verbose=True)
 
+#pulls the info directly from the string
+#or have it pull a .sh file that the user created prior to this where they were asked to input a websites ip address
+#into a file and then save it as a .sh script
+
+#to preface that, you could have the user find the ip address themselves using nslookup or some tool.
+
+root=tk.Tk()
+root.title("Networking | Ping tool")
+root.geometry('800x480')
+
+web_var=tk.StringVar()
+
+#trying to make a notification pop up to explain whats happening
+#notification = Tk()
+#root.wm_withdraw()
+#messagebox.showinfo('This is the ping tool', 'Any internet address entered will be pinged with 4 ICMP packets. They should return with TTL' )
+#root.destroy()
+
+#entery
+def site_entry():
+    web_info = web_var.get()
+    print ("Website Entered: " + web_info)
+
+    web_var.set("")
+
+
+#submit button
+def site_submit():
+    subprocess.run(["ping", "-c", "4", "8.8.8.8"])
+
+
+#ping ('8.8.8.8', verbose=True)
+
+webaddy_lable = tk.Label(root, text = 'Enter the addy here')
+webaddy_entry = tk.Entry(root,textvariable = web_var)
+
+button_lable = tk.Button(root, text="Click here to submit the ping request", command=site_submit)
+
+webaddy_lable.pack()
+webaddy_entry.pack()
+button_lable.pack()
+
+root.mainloop()
