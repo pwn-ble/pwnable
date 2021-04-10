@@ -1,5 +1,8 @@
 from guizero import App, Text, TextBox, PushButton
 import tkinter as tk
+import subprocess
+import platform
+import os
 
 # programming module command
 def load_programming_module():
@@ -8,6 +11,12 @@ def load_programming_module():
 # password module command
 def load_password_module():
     print("Loading Password Module...")
+
+    # path works if you execute the script from this directory
+    if (platform.system() == 'Windows'):
+        lol = subprocess.call(['python.exe', '.\\modules\\password\\ui.py'])
+    else:
+        lol = subprocess.call(['python3', './modules/password/ui.py'])
 
 # help command
 def load_help():
