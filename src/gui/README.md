@@ -1,4 +1,4 @@
 ## GUI Resources
 this is where the research and resources related to GUI development goes.
 
-[guizero - getting started](https://lawsie.github.io/guizero/start/)
+[tkinter - getting started](https://docs.python.org/3/library/tkinter.html)

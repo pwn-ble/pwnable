@@ -1,5 +1,6 @@
-from guizero import App, Text, TextBox, PushButton, Window
 import tkinter as tk
+
+root = tk.Tk()
 
 # programming module command
 def load_programming_module():
@@ -11,7 +12,8 @@ def load_password_module():
     programming_button.pack_forget()
     password_button.pack_forget()
     help_button.pack_forget()
-    
+    networking_button.pack_forget()
+
     # load new buttons
     back_button.pack(side=tk.TOP, anchor="nw")
     back_button.place(x=45, y=45)
@@ -30,31 +32,44 @@ def load_menu():
 
     programming_button.pack()
     password_button.pack()
+    networking_button.pack()
     help_button.pack()
 # parameter variables for easy adjustments
-button_width = 15
-button_font = "Arial 20 bold"
 
-app = App(title="Pwnable")
-title_pwnable = Text(app, text="Pwnable", size=50, font="Arial")
-module_title = Text(app, text="Modules", size=25)
+# Pwnable window title
+root.geometry("800x480")
+title = root.title("Pwnable")
+
+# Pwnable menu title
+title_pwnable = tk.Label(root, text = "Pwnable", font="Arial 50 bold")
+title_pwnable.pack(pady = (0, 20))
+
+# Module menu title
+module_title = tk.Label(root, text = "Modules", font="Arial 25")
+module_title.pack()
+
 # buttons configuration
 main_menu_frame = tk.Frame()
-programming_button = tk.Button(width=button_width,
+programming_button = tk.Button(width=15,
                                text="Programming",
-                               font=button_font,
+                               font="Arial 20 bold",
                                fg="white",
                                bg="black",
                                command=load_programming_module)
-password_button = tk.Button(width=button_width,
+password_button = tk.Button(width=15,
                             text="Password",
-                            font=button_font,
+                            font="Arial 20 bold",
                             fg="white",
                             bg="black",
                             command=load_password_module)
-help_button = tk.Button(width=button_width,
+networking_button = tk.Button(width=15,
+                        text="Networking",
+                        font="Arial 20 bold",
+                        fg="white",
+                        bg="black")
+help_button = tk.Button(width=15,
                         text="Help",
-                        font=button_font,
+                        font="Arial 20 bold",
                         fg="white",
                         bg="black",
                         command=load_help)
@@ -62,10 +77,11 @@ help_button = tk.Button(width=button_width,
 # display buttons
 programming_button.pack()
 password_button.pack()
+networking_button.pack()
 help_button.pack()
 
-password_menu_frame = tk.Frame()
 
+password_menu_frame = tk.Frame()
 back_button = tk.Button(width=6,
                         text="Back",
                         font="Arial 10 bold",
@@ -82,4 +98,4 @@ password_cracker_button = tk.Button(width=17,
                         font="Arial 18 bold",
                         fg="white",
                         bg="black")
-app.display()
+root.mainloop()
