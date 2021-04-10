@@ -13,6 +13,7 @@
 9. `locate` file that was moved
 10. `man` for help with commands
 
+
 `cd`
 `cd..`
 
