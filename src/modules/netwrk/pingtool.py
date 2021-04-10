@@ -20,22 +20,24 @@ root.geometry('800x480')
 web_var=tk.StringVar()
 
 #trying to make a notification pop up to explain whats happening
-#notification = Tk()
+#notification =wi()
 #root.wm_withdraw()
 #messagebox.showinfo('This is the ping tool', 'Any internet address entered will be pinged with 4 ICMP packets. They should return with TTL' )
-#root.destroy()
+#notification.destroy()
 
-#entery
+#entery boxfor website
 def site_entry():
     web_info = web_var.get()
     print ("Website Entered: " + web_info)
 
-    web_var.set("")
+    #web_var.set("")
 
 
 #submit button
 def site_submit():
-    subprocess.run(["ping", "-c", "4", "8.8.8.8"])
+    web_info = web_var.get()
+    subprocess.run(["ping", "-c", "4", web_info])
+    print ("Website Entered: " + web_info)
 
 
 #ping ('8.8.8.8', verbose=True)
@@ -43,10 +45,11 @@ def site_submit():
 webaddy_lable = tk.Label(root, text = 'Enter the addy here')
 webaddy_entry = tk.Entry(root,textvariable = web_var)
 
-button_lable = tk.Button(root, text="Click here to submit the ping request", command=site_submit)
+submit_button = tk.Button(root, text="Click here to submit the ping request", command=site_submit)
 
+#puts the stuff in the gui
 webaddy_lable.pack()
 webaddy_entry.pack()
-button_lable.pack()
+submit_button.pack()
 
 root.mainloop()
