@@ -13,6 +13,13 @@
 9. `locate` file that was moved
 10. `man` for help with commands
 
+`cd`
+`cd..`
+
+`ls` flags
+
+`head`/`tail`
+
 ## requirements
 1. a script that goes through the walkthrough steps
     - have the script run in terminal
