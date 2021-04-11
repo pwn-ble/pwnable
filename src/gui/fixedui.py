@@ -1,5 +1,5 @@
 import tkinter as tk
-
+from PIL import ImageTk, Image
 root = tk.Tk()
 
 # programming module command
@@ -25,11 +25,13 @@ def load_help():
     print("Loading Help...")
 
 def load_menu():
+    # removes previous buttons
     password_generator_button.pack_forget()
     password_cracker_button.pack_forget()
     back_button.pack_forget()
     back_button.place_forget()
-
+    
+    # load new buttons
     programming_button.pack()
     password_button.pack()
     networking_button.pack()
@@ -37,12 +39,16 @@ def load_menu():
 # parameter variables for easy adjustments
 
 # Pwnable window title
-root.geometry("800x480")
 title = root.title("Pwnable")
-
+root.geometry("800x480")
 # Pwnable menu title
-title_pwnable = tk.Label(root, text = "Pwnable", font="Arial 50 bold")
-title_pwnable.pack(pady = (0, 20))
+
+path = Image.open("PwnableLogos/PwnableLogo-08.png")
+resize=path.resize((269,55), Image.ANTIALIAS)
+photo = ImageTk.PhotoImage(resize)
+label = tk.Label(image=photo)
+# label.image = photo
+label.pack(pady=(25,0))
 
 # Module menu title
 module_title = tk.Label(root, text = "Modules", font="Arial 25")
