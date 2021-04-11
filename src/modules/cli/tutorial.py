@@ -6,11 +6,14 @@ import subprocess
 os.chdir('src/modules/cli/')
 
 print('welcome to the terminal!')
-
+# kun here, you can also do 
+# name = input('what is your name?: ')
 print('what is your name?')
 name = input()
 
 print(f'nice to see you, {name}.\nwe are going to learn how to use a terminal')
+# here as well
+# answer = input('are you ready?: ')
 print('are you ready?')
 answer = input()
 
