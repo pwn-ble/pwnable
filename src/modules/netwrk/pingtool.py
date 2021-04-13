@@ -18,6 +18,7 @@ root.title("Networking | Ping tool")
 root.geometry('800x480')
 
 web_var=tk.StringVar()
+ping_var=tk.StringVar()
 
 #trying to make a notification pop up to explain whats happening
 #notification =wi()
@@ -32,24 +33,45 @@ def site_entry():
 
     #web_var.set("")
 
+def ping_ammount():
+    ping_ammt = ping_var.get()
+    #global ping_ammt
+    print ("Number of pings sent: " + ping_ammt)
+    #totalpings_lable.configure
+
+
+
 
 #submit button
 def site_submit():
     web_info = web_var.get()
-    subprocess.run(["ping", "-c", "4", web_info])
+    ping_ammt = ping_var.get()
+
+    
+    res = "Previously pinged: " + web_info + " " + ping_ammt + "times."
+    webaddy_lable.configure(text= res)
+
+    subprocess.run(["ping", "-c", ping_ammt, web_info])
     print ("Website Entered: " + web_info)
+    
 
+# Add the functionality to make the terminal pop out into the window.
 
-#ping ('8.8.8.8', verbose=True)
-
-webaddy_lable = tk.Label(root, text = 'Enter the addy here')
+webaddy_lable = tk.Label(root, text = 'Enter the internet address here')
 webaddy_entry = tk.Entry(root,textvariable = web_var)
+
+totalpings_lable = tk.Label(root, text = 'Enter the ammount of times you wish to ping this address')
+totalpings_entry = tk.Entry(root,textvariable = ping_var)
 
 submit_button = tk.Button(root, text="Click here to submit the ping request", command=site_submit)
 
 #puts the stuff in the gui
 webaddy_lable.pack()
 webaddy_entry.pack()
+
+totalpings_lable.pack()
+totalpings_entry.pack()
+
 submit_button.pack()
 
 root.mainloop()
