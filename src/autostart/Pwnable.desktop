@@ -2,8 +2,8 @@
 Type=Application
 Encoding=UTF-8
 Name=Pwnable
-Exec=/home/pi/Desktop/Pwn/src/app.sh
-Icon=/home/pi/Desktop/Pwn/src/pwnlogos/thumbnail_PwnableLogo-06.png
+Exec=sh /home/pi/.config/autostart/app.sh
+Icon=/home/pi/pwnable/src/PwnableLogos/thumbnail_PwnableLogo-06.png
 StartupNotify=true
 Terminal=false
 Name[en_US]=Pwnable

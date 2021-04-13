@@ -34,3 +34,4 @@ def gen(length):
             print("ERROR: randType variable not working")
 
     return p
+    print(p)
