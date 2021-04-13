@@ -48,7 +48,7 @@ def site_submit():
     ping_ammt = ping_var.get()
 
     
-    res = "Previously pinged: " + web_info + " " + ping_ammt + "times."
+    res = "Previously pinged: " + web_info + " " + ping_ammt + " times."
     webaddy_lable.configure(text= res)
 
     subprocess.run(["ping", "-c", ping_ammt, web_info])
