@@ -14,7 +14,7 @@ with subprocess.Popen(['python3', './src/gui/login.py'], stdout=subprocess.PIPE)
     creds = {} # dictionary for credential key-value-pairs
 
     for line in login.stdout:
-        output = login_service.decode_stdout(line) #strip byte-encoding from stdout
+        output = login_service.decode_stdout(line) # strip byte-encoding from stdout
         cred_line = output.split() # separate credentials from their label in the stdout
         creds[cred_line[0].strip(':')] = cred_line[1] # add credentials to dictionary as kvp
     login.wait()
@@ -25,4 +25,4 @@ with subprocess.Popen(['python3', './src/gui/login.py'], stdout=subprocess.PIPE)
         # should have them try a different usrname
     else:
         print('great, lets get you set up...')
-        # should call login_service.adduser(creds['user'])
+        login_service.add_user(creds['user'], creds['password'])
