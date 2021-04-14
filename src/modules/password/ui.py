@@ -3,17 +3,9 @@ import subprocess
 # from generator import generator
 from hasher import hasher
 
-def check_password():
-    if (len(inputBox.value) >= 6 and len(inputBox.value) <= 8): # between 5 and 8 characters
-        submitButton.enabled = True # enable the submit button
-        inputErrorLabel.visible = False
-    else:
-        inputErrorLabel.visible = True
-        submitButton.enabled = False
-
-    strengthSlider.enabled = True # enable it to alter value
-    strengthSlider.value = len(inputBox.value) # alter the value
-    strengthSlider.enabled = False # disable it again to prevent manual change
+def check_form():
+    if (len(usernameBox.value) > 0 and len(passwordBox.value) > 0): # TODO: make more complex, ensure long-ish password
+        submitButton.enabled = True
 
 # def generate_password(length=15):
 #     pwd = generator.gen(length) # call password synthesis function
@@ -21,8 +13,11 @@ def check_password():
 #     suggestionOutputLabel.value = f'Suggested password: {pwd}' # output to the UI
 
 def submit():
-    passwd = hasher.hash(inputBox.value) # hash the input from the textbox
-    hasher.unshadow(passwd) # write hash to unshadowed john format
+    """
+    will take the inputs and create a new user from them
+    """
+    passwd = hasher.hash(passwordBox.value) # hash the input from the textbox
+    # passwd1 = subprocess.run(['mkpasswd', passwordBox.value])
 
     title = 'an intro to passwords'
     b = f'your password has been encrypted.\nthis is what it looks like in the OS: {passwd}'
@@ -45,7 +40,7 @@ def submit():
 # GuiZero UI components
 #
 
-app = App(title="password strength") # create a window
+app = App(title="create a user") # create window
 
 prompt = """
     passwords are very important, they protect all of your data.
