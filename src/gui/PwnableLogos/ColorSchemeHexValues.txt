@@ -1,0 +1,3 @@
+hex codes:
+slimy green: #309e2e
+industrial black: #111111

@@ -40,18 +40,20 @@ def load_menu():
 
 # Pwnable window title
 title = root.title("Pwnable")
+# set window size
 root.geometry("800x480")
-# Pwnable menu title
-
+# set background color
+root.configure(background="black")
+# Pwnable logo
 path = Image.open("PwnableLogos/PwnableLogo-08.png")
 resize=path.resize((269,55), Image.ANTIALIAS)
 photo = ImageTk.PhotoImage(resize)
-label = tk.Label(image=photo)
-# label.image = photo
+label = tk.Label(bg='black',image=photo)
+#label.image = photo
 label.pack(pady=(25,0))
 
 # Module menu title
-module_title = tk.Label(root, text = "Modules", font="Arial 25")
+module_title = tk.Label(root, bg='black', fg='white', text = "Modules", font="Arial 25")
 module_title.pack()
 
 # buttons configuration
