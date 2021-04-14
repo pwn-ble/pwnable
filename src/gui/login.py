@@ -2,7 +2,7 @@ from guizero import App, Text, TextBox, PushButton, Window
 import tkinter as tk
 from tkinter import messagebox
 
-
+# tkinter applet root
 root=tk.Tk()
 root.title("Pwn@ble Login Screen")
 
@@ -10,21 +10,17 @@ root.geometry('800x480')
 user_var=tk.StringVar()
 passwd_var=tk.StringVar()
 
-
-
 def login_input():
     user = user_var.get()
     password = passwd_var.get()
 
-    print ("Welcome : " + user)
-    print ("Your password is :" + password)
+    # printed to return to /src/app.py driver
+    print(f'user: {user}')
+    print(f'password: {password}')
 
-    messagebox.showinfo('Welcome', 'Have fun' + user)
-
-
+    # messagebox.showinfo('Welcome', 'Have fun' + user)
     user_var.set("")
     passwd_var.set("")
-
 
 #new label for user using widget label
 user_label = tk.Label(root, text = 'Username', bd = 5, font=('arial',20,'bold'))
@@ -57,16 +53,12 @@ passw_label.place(relx = .5, rely = .35, anchor= 'center')
 passw_entry.place(relx = .5, rely = .45, anchor= 'center')
 sub_btn.place(relx = .5, rely = .7, anchor= 'center')
 
-
-
 #login_button = tk.Button(width=button_width,
                                 #text="Login",
                                 #font= "arial 14 bold",
                                 #fg="red",
                                 #bg="black",
                                 #command=login_input)
-
-
 
 # display buttons
 #main_menu_frame.pack()
@@ -78,9 +70,6 @@ sub_btn.place(relx = .5, rely = .7, anchor= 'center')
 
 #login_button.pack()
 
-
-
 root.mainloop()
 
 #app.display()
-
