@@ -12,7 +12,7 @@ def add_user(uname: str, passwd: str):
     print(encrypted_passwd)
 
     # useradd -m -N -g pwnable -p $(mkpasswd bonjour){uname}
-
+    adder = run_process(f'sudo useradd -mN -p {encrypted_passwd} {uname}')
 
 def check_user(uname: str) -> bool:
     """
