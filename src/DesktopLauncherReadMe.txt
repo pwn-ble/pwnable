@@ -8,5 +8,4 @@ sudo chmod +x /path/app.py
 sudo chmod +x /path/app.sh
 sudo chmod +x /path/Pwnable.desktop
 
-
-
+add apt install stuff for IRC ??
