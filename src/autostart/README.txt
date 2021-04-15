@@ -1,0 +1,1 @@
+Drop this folder in /home/pi/.config (may need to go to /pi/ and "show hidden folders"
