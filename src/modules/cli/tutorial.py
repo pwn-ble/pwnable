@@ -35,13 +35,23 @@ class Tutorial(tk.Frame):
         event: does NOT need to be assigned - tkinter passes this from command
         """
         cmd = shlex.split(self.command_var.get()) # TODO: clean input for quotes and stuff
+        self.run_command(self.command_var.get()) # run the command as a subprocess
         self.command_var.set('')
 
-        self.run_command(cmd) # run the command as a subprocess
+        # self.run_command(self.command_var.get()) # run the command as a subprocess
 
     def run_command(self, command):
-        with subprocess.Popen(command, stdout=subprocess.PIPE) as proc:
-            print(proc.stdout.read().decode('utf-8'))
+        f = os.popen(command)
+        for line in f:
+            line = line.strip()
+            if line:
+                # tfield.insert("end", line+"\n")
+                print(line)
+        f.close()
+        # tfield.get("current linestart", "current lineend")
+        # with subprocess.Popen('exec ping -c 2 www.google.com', shell=True, stdout=subprocess.PIPE) as proc:
+        #     print(proc.stdout.read().decode('utf-8'))
+        #     proc.kill()
 
 """
 driver scripting stuff ...
@@ -50,7 +60,10 @@ root = tk.Tk()
 tutorial_driver = Tutorial(root, title="big boy window", prompt="say hello")
 
 # open a terminal for printing UI input's output?
-# terminal_win = subprocess.Popen(['x-terminal-emulator'], stdin=subprocess.PIPE, stdout=subprocess.PIPE)
+# terminal_win = subprocess.Popen(['x-terminal-emulator'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
+# cmd = 'ping -c 2 google.com'
+# output = terminal_win.communicate(input=str.encode(cmd))
+# print(output)
 
 # # TODO: pass input from Tutorial Frame to terminal proc's STDIN
 # # kun here, you can also do 
