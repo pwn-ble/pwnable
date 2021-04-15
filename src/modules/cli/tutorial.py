@@ -34,24 +34,24 @@ class Tutorial(tk.Frame):
         """
         event: does NOT need to be assigned - tkinter passes this from command
         """
-        cmd = shlex.split(self.command_var.get()) # TODO: clean input for quotes and stuff
-        self.run_command(self.command_var.get()) # run the command as a subprocess
-        self.command_var.set('')
+        cmd = self.command_var.get() # TODO: clean input for quotes and stuff
 
-        # self.run_command(self.command_var.get()) # run the command as a subprocess
+        temp_file = open('cmd.sh', 'w') # create a temporary shell script to execute command input
+        temp_file.write(cmd) # write command to file
+        temp_file.close()
 
-    def run_command(self, command):
-        f = os.popen(command)
+        self.run_command() # open the shell script with our command, get output
+        self.command_var.set('') # clear UI input
+
+    def run_command(self):
+        cmd_file = open('cmd.sh', 'r')
+        cmd = cmd_file.read()
+        cmd_file.close()
+        
+        f = os.popen(cmd)
         for line in f:
-            line = line.strip()
-            if line:
-                # tfield.insert("end", line+"\n")
-                print(line)
-        f.close()
-        # tfield.get("current linestart", "current lineend")
-        # with subprocess.Popen('exec ping -c 2 www.google.com', shell=True, stdout=subprocess.PIPE) as proc:
-        #     print(proc.stdout.read().decode('utf-8'))
-        #     proc.kill()
+            # TODO: strip extra shit
+            print(line) # TODO: grab this output and put it in a scroll(?) frame
 
 """
 driver scripting stuff ...
@@ -59,57 +59,8 @@ driver scripting stuff ...
 root = tk.Tk()
 tutorial_driver = Tutorial(root, title="big boy window", prompt="say hello")
 
-# open a terminal for printing UI input's output?
-# terminal_win = subprocess.Popen(['x-terminal-emulator'], stdin=subprocess.PIPE, stdout=subprocess.PIPE, stderr=subprocess.STDOUT)
-# cmd = 'ping -c 2 google.com'
-# output = terminal_win.communicate(input=str.encode(cmd))
-# print(output)
-
 # # TODO: pass input from Tutorial Frame to terminal proc's STDIN
 # # kun here, you can also do 
 # # name = input('what is your name?: ')
 
 root.mainloop()
-
-"""
-extra stuff
-"""
-# ip = '192.168.1.1'
-
-# root = tk.Tk()
-# tfield = tk.Text(root)
-# tfield.pack()
-# f = os.popen('ping %s' % (ip))
-# for line in f:
-#     line = line.strip()
-#     if line:
-#         tfield.insert("end", line+"\n")
-#         tfield.get("current linestart", "current lineend")
-
-# def get_info(arg):
-#     print(tfield.get("1.0", "current lineend"))
-
-# tfield.bind("<Return>", get_info)
-
-# root.mainloop()
-# f.close()
-
-"""
-opens an embedded terminal
-"""
-# root = tk.Tk()
-# termf = tk.Frame(root, height=400, width=500)
-
-# termf.pack(fill=tk.BOTH, expand=tk.YES)
-# wid = termf.winfo_id()
-# os.system('xterm -into %d -geometry 40x20 -sb &' % wid)
-
-# root.mainloop()
-
-# root = tk.Tk()
-# tfield = tk.Text(root)
-# tfield.pack()
-# for line in os.popen("run_command", 'r'):
-# 	tfield.insert("end", line)
-
-# root.mainloop()
