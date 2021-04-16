@@ -9,26 +9,25 @@ class Tutorial(tk.Frame):
     def __init__(self, root:tk.Tk, title:str, prompt:str):
         tk.Frame.__init__(self, root) # call tk superclass constructor
 
-        self.command_var = tk.StringVar() # set up input tracking variable
-
-        self.create_widgets(root, title, prompt) # add elements to the app root
-
-    # TODO: def clean_input(input: str):
-
-    def create_widgets(self, root, title, prompt):
         # assign attributes
         self.master = root
         self.master.bind('<Return>', self.handle_input) # submit on return key press
 
-        self.window_title = title
-        self.prompt = prompt
+        self.command_var = tk.StringVar() # set up input tracking variable
 
+        # add elements to the app root
+        self.window_title = title
         root.wm_title(self.window_title) # set window title
+
+        self.prompt = prompt
         
         # add UI elements
+        self.cli_output = tk.Text(self.master, bg="black", fg="green").pack()
         self.prompt_label = tk.Label(self.master, text=self.prompt).pack()
         self.command_input = tk.Entry(self.master, textvariable=self.command_var).pack()
         self.submit_button = tk.Button(self.master, command=self.handle_input).pack()
+
+    # TODO: def clean_input(input: str):
         
     def handle_input(self, event):
         """
@@ -51,7 +50,9 @@ class Tutorial(tk.Frame):
         f = os.popen(cmd)
         for line in f:
             # TODO: strip extra shit
-            print(line) # TODO: grab this output and put it in a scroll(?) frame
+            self.cli_output.delete('1.0', 'end')
+            self.cli_output.insert(tk.END, line)
+            self.cli_output.update()
 
 """
 driver scripting stuff ...

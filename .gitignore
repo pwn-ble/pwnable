@@ -2,3 +2,4 @@
 __pycache__/
 *.img
 src/modules/password/hasher/fake_unshadow.txt
+src/cmd.sh
