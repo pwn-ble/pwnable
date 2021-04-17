@@ -8,6 +8,8 @@ class Tutorial(tk.Frame):
 
     # TODO: make background black
     # TODO: move input box to the right side of window
+    # TODO: implement command history functionality
+        # history command doesnt work bc no bash session
 
     # temp shell
     temp_path = os.getcwd() + "/src/etc/"
@@ -49,9 +51,11 @@ class Tutorial(tk.Frame):
 
     def go_up(self, event):
         print("up")
+        # TODO: implement
     
     def go_down(self, event):
         print("down")
+        # TODO: implement
 
     def handle_input(self, event):
         """
