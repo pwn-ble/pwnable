@@ -50,12 +50,21 @@ class Tutorial(tk.Frame):
     # TODO: def clean_input(input: str):
 
     def go_up(self, event):
+        """
+        retrieve the preceeding command in the history index
+        """
         print("up")
         # TODO: implement
+        # self.command_var.set('')
     
     def go_down(self, event):
+        """
+        move forward in the command history index;
+        return that command;
+        """
         print("down")
         # TODO: implement
+        # self.command_var.set('')
 
     def handle_input(self, event):
         """
