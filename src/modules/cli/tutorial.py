@@ -8,8 +8,6 @@ class Tutorial(tk.Frame):
 
     # TODO: make background black
     # TODO: move input box to the right side of window
-    # TODO: make input label the terminal'user / pwd' prompt
-        # TODO: make label update with relevant commands, ie: cd
 
     # temp shell
     temp_path = os.getcwd() + "/src/etc/"
