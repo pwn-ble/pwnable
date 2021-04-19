@@ -1,6 +1,10 @@
 import tkinter as tk
 from PIL import ImageTk, Image
 from tkinter import messagebox
+import subprocess
+import platform
+import os
+
 root = tk.Tk()
 
 user_var=tk.StringVar()
@@ -14,7 +18,7 @@ def login_input():
     print ("Welcome: " + user)
     print ("Your password is: " + password)
 
-    messagebox.showinfo('Welcome', 'Have fun ' + user)
+    # messagebox.showinfo('Welcome', 'Have fun ' + user)
 
     user_var.set("")
     passwd_var.set("")
@@ -45,6 +49,16 @@ def load_password_module():
     back_button.place(x=50, y=30.5)
     password_generator_button.pack()
     password_cracker_button.pack()
+
+def load_password_generator():
+
+    print("Loading Password Generator...")
+    
+    # path works if you execute the script from this directory
+    if (platform.system() == 'Windows'):
+        lol = subprocess.call(['python.exe', '.\\modules\\\password\\generator\\generator.py'])
+    else:
+        lol = subprocess.call(['python3', './modules\password/generator/generator.py'])
 
 # help command
 def load_help():
@@ -147,7 +161,8 @@ password_generator_button = tk.Button(width=17,
                                       text="Password Generator",
                                       font="Arial 18 bold",
                                       fg="white",
-                                      bg="black")
+                                      bg="black",
+                                      command=load_password_generator)
 password_cracker_button = tk.Button(width=17,
                                     text="Password Cracker",
                                     font="Arial 18 bold",
