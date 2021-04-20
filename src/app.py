@@ -1,12 +1,14 @@
 import os
 import platform
 import subprocess
+import tkinter
+from gui.Terminal import Terminal
 
 # lauch pwnable home screen script
-if (platform.system() == 'Windows'):
-    subprocess.call(['python.exe', '.\\gui\\menu.py'])
-else:
-    subprocess.call(['python3', './gui/menu.py'])
+# if (platform.system() == 'Windows'):
+#     subprocess.call(['python.exe', '.\\gui\\menu.py'])
+# else:
+#     subprocess.call(['python3', './gui/menu.py'])
 
 # class Application(tk.Frame):
 #     def __init__(self):
@@ -32,3 +34,12 @@ else:
 
 
 # Application().start()
+
+
+root = tkinter.Tk()
+tutorial_driver = Terminal(root)
+
+# TODO: write challenge prompts
+# TODO: build popups to supplement challenge walkthrough
+
+root.mainloop()
