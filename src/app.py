@@ -1,8 +1,9 @@
 import os
 import platform
 import subprocess
-import tkinter
+import tkinter as tk
 from gui.Terminal import Terminal
+from gui.Login import Login
 
 # lauch pwnable home screen script
 # if (platform.system() == 'Windows'):
@@ -36,8 +37,9 @@ from gui.Terminal import Terminal
 # Application().start()
 
 
-root = tkinter.Tk()
-tutorial_driver = Terminal(root)
+root = tk.Tk()
+login_instance = Login(root)
+# tutorial_driver = Terminal(root)
 
 # TODO: write challenge prompts
 # TODO: build popups to supplement challenge walkthrough
