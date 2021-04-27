@@ -2,6 +2,8 @@ import tkinter as tk
 
 class Popup(tk.Toplevel): # inherit from tkinter's Toplevel window module 
 
+    # TODO: give window padding
+
     def __init__(self, root: tk.Tk, text = "new popup"):
 
         self.master = root
@@ -13,4 +15,5 @@ class Popup(tk.Toplevel): # inherit from tkinter's Toplevel window module
         self.blurb.pack()
 
         # add ok button
-        # command from terminal to satisfy - close frame?
+        self.bye_button = tk.Button(self, text = "OK", command = self.destroy)
+        self.bye_button.pack()
