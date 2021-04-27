@@ -74,6 +74,9 @@ def toggle_dark():
         darktoggle_button.config(fg=textColor, bg=buttonBG)
         label.config(bg=backGround)
         module_title.config(bg=backGround, fg=textColor)
+        back_button.config(bg=buttonBG, fg=textColor)
+        password_generator_button.config(bg=buttonBG, fg=textColor)
+        password_cracker_button.config(bg=buttonBG, fg=textColor)
         
         
 
@@ -93,6 +96,9 @@ def toggle_dark():
         darktoggle_button.config(fg=textColor, bg=buttonBG)
         label.config(bg=backGround)
         module_title.config(bg=backGround, fg=textColor)
+        back_button.config(bg=buttonBG, fg=textColor)
+        password_generator_button.config(bg=buttonBG, fg=textColor)
+        password_cracker_button.config(bg=buttonBG, fg=textColor)
 
 
 
@@ -145,16 +151,16 @@ darktoggle_button = tk.Button(width=10,
                         font="Arial 12 bold",
                         fg=textColor,
                         bg=buttonBG,
-                        anchor="sw",
                         command=toggle_dark)
 
 
 # display buttons
+darktoggle_button.pack(anchor='ne')
 programming_button.pack()
 password_button.pack()
 networking_button.pack()
 help_button.pack()
-darktoggle_button.pack()
+
 
 
 password_menu_frame = tk.Frame()
@@ -162,7 +168,7 @@ back_button = tk.Button(width=6,
                         text="Back",
                         font="Arial 10 bold",
                         fg=textColor,
-                        bg="gray",
+                        bg=buttonBG,
                         command=load_menu)
 password_generator_button = tk.Button(width=17,
                         text="Password Generator",
