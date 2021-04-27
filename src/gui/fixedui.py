@@ -148,7 +148,7 @@ help_button = tk.Button(width=15,
 
 darktoggle_button = tk.Button(width=10,
                         text="Dark/Light",
-                        font="Arial 12 bold",
+                        font="Arial 10 bold",
                         fg=textColor,
                         bg=buttonBG,
                         command=toggle_dark)
@@ -156,6 +156,7 @@ darktoggle_button = tk.Button(width=10,
 
 # display buttons
 darktoggle_button.pack(anchor='ne')
+darktoggle_button.place(x=650,y=45)
 programming_button.pack()
 password_button.pack()
 networking_button.pack()
