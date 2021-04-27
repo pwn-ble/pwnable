@@ -1,6 +1,10 @@
-from guizero import App, Text, TextBox, PushButton, Window
+
 import tkinter as tk
 from tkinter import messagebox
+import os
+import subprocess
+import sys
+import getpass
 
 
 root=tk.Tk()
@@ -12,6 +16,26 @@ passwd_var=tk.StringVar()
 
 
 
+
+#code from geeksforgeeks.org "Add a User in Linux using Python Script
+def add_user(x, y):
+    messagebox.showinfo('Adding User: ' + x, '...')
+
+    
+    #try:
+    subprocess.run(['sudo useradd ',x])
+    subprocess.run(['sudo passwd ',y])
+    time.sleep(0.5)
+    subprocess.run([y])
+    time.sleep(0.5)
+    subprocess.run([y])
+        
+    #except:
+        #messagebox.showinfo('Something went wrong, please try again (Hint: The issue could be with your username or password')
+        #sys.exit(1)
+        
+        
+
 def login_input():
     user = user_var.get()
     password = passwd_var.get()
@@ -19,11 +43,13 @@ def login_input():
     print ("Welcome : " + user)
     print ("Your password is :" + password)
 
-    messagebox.showinfo('Welcome', 'Have fun' + user)
-
+    
 
     user_var.set("")
     passwd_var.set("")
+    
+    add_user(user, password)
+    
 
 
 #new label for user using widget label
