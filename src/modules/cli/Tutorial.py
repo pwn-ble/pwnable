@@ -21,5 +21,9 @@ class Tutorial(tk.Frame):
         """
         TODO: include tutorial scripting stuff in order here
         """
-        greeting_popup = Popup(self.master, text = "welcome to the cli tutorial") # greet the user
-        greeting_popup.lift(self.terminal) # show up before the terminal
+        greeting_popup = self.show_popup("welcome to the cli tutorial") # greet the user
+        
+
+    def show_popup(self, text: str):
+        popup = Popup(self.master, text = text) # greet the user
+        popup.lift(self.terminal) # show up before the terminal
