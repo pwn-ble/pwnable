@@ -2,12 +2,16 @@ import os
 import platform
 import subprocess
 import tkinter as tk
-from gui.Popup import Popup
+
+from modules.cli.Tutorial import Tutorial # this is a driver script for CLI tutorial
 
 root = tk.Tk()
-# tutorial_driver = Terminal(root)
-test = Popup(root)
 
-# TODO: write challenge prompts
+tutorial_driver = Tutorial(root)
+
+# TODO: should show login frame
+    # TODO: process info against login files
+    # TODO: check progress, if any
+    # TODO: launch user into save point
 
 root.mainloop()
