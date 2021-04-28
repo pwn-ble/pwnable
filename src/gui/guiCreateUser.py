@@ -19,11 +19,14 @@ passwd_var=tk.StringVar()
 
 #code from geeksforgeeks.org "Add a User in Linux using Python Script
 def add_user(x, y):
-    messagebox.showinfo('Adding User: ' + x + '...')
+
 
     
     #try:
     os.system('sudo useradd -p $(openssl passwd -1 %s) %s'% (y, x))
+    
+    #os.system('su - %s' % (x))
+    #os.system(y)
     
         
     #except:
