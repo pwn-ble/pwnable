@@ -1,43 +1,60 @@
 import tkinter as tk
+import subprocess
+
+from gui.Popup import Popup
+from modules.password.hasher import hasher
 
 class PasswordGenerator(tk.Frame):
 
     def __init__(self, root: tk.Tk):
         tk.Frame.__init__(self, root)
 
-        prompt = """
+        self.prompt = """
             passwords are very important, they protect all of your data.
             you should make sure to use strong passwords, 
             because most of them can be hacked.
             """
 
-        promptInfoBlurb = info("an intro to passwords", prompt) # present an info blurb
+        self.promptInfoBlurb = Popup(root, self.prompt) # present an info blurb
+        self.promptInfoBlurb.lift(self)
 
-        inputLabel = Text(app, text="enter a password to test its strength")
+        self.inputLabel = tk.Text(root)
+        self.inputLabel.insert(tk.END, "enter a password to test its strength")
+        self.inputLabel.pack()
 
-        inputContainer = Box(app, layout="grid")
-        inputBox = TextBox(inputContainer, grid=[0,1]) # add a textbox for input
-        inputBox.update_command(check_password) # check pass strength after any input
-        inputErrorLabel = Text(inputContainer, text="password should be 6-8 characters", grid=[0,0], color="red", visible=False)
-        sliderLabel = Text(app, text="password length:")
-        strengthSlider = Slider(app, enabled=False) # add slider to show pass strength
+        # # self.inputContainer = tk.Box(root, layout="grid")
 
-        # suggestionContainer = Box(app, layout="grid")
-        # suggestionButton = PushButton(app, text="get a password suggestion", command=generate_password) # button to get a suggested password
-        # suggestionOutputLabel = Text(app, visible=False) # initially invisible
+        self.inputBox = tk.Entry(root, cnf = {"update_command": self.check_form})
+        self.inputBox.grid=(0,1) # add a textbox for input
+        self.inputBox.pack()
 
-        submitButton = PushButton(app, text="submit", enabled=False, command=submit)
+        self.inputErrorLabel = tk.Text(root, text="password should be 6-8 characters", grid=[0,0], color="red", visible=False)
 
-    def check_form():
-        if (len(usernameBox.value) > 0 and len(passwordBox.value) > 0): # TODO: make more complex, ensure long-ish password
+        self.sliderLabel = tk.Text(root).insert(tk.END, "password length:")
+        self.strengthSlider = tk.Slider(root, enabled=False) # add slider to show pass strength
+
+        # suggestionContainer = Box(root, layout="grid")
+        # suggestionButton = PushButton(root, text="get a password suggestion", command=generate_password) # button to get a suggested password
+        # suggestionOutputLabel = Text(root, visible=False) # initially invisible
+
+        self.submitButton = tk.PushButton(root, text="submit", enabled=False, command=submit)
+        self.submitButton.pack()
+        
+        # self.inputBox.pack()
+        # self.inputErrorLabel.pack()
+        # self.sliderLabel.pack()
+        # self.strengthSlider.pack()
+
+    def check_form(self):
+        if (len(self.usernameBox.value) > 0 and len(self.passwordBox.value) > 0): # TODO: make more complex, ensure long-ish password
             submitButton.enabled = True
 
-    def generate_password(length=15):
+    def generate_password(self, length = 15):
         pwd = generator.gen(length) # call password synthesis function
         suggestionOutputLabel.visible = True # show suggestion output label
         suggestionOutputLabel.value = f'Suggested password: {pwd}' # output to the UI
 
-    def submit():
+    def submit(self):
         """
         will take the inputs and create a new user from them
         """
