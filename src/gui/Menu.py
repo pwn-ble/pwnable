@@ -1,7 +1,11 @@
 import tkinter as tk
+import os
 from PIL import ImageTk, Image
 
 class Menu(tk.Frame):
+
+    photosPath = os.getcwd() + "/src/gui/PwnableLogos/"
+
     def __init__(self, root:tk.Tk):
         tk.Frame.__init__(self, root)
 
@@ -11,8 +15,8 @@ class Menu(tk.Frame):
         self.master.geometry("800x480")
         # Pwnable menu title
 
-        path = Image.open("PwnableLogos/PwnableLogo-08.png")
-        resize=path.resize((269,55), Image.ANTIALIAS)
+        path = Image.open(self.photosPath + "PwnableLogo-08.png")
+        resize = path.resize((269,55), Image.ANTIALIAS)
         photo = ImageTk.PhotoImage(resize)
         label = tk.Label(image=photo)
         # label.image = photo
@@ -29,13 +33,13 @@ class Menu(tk.Frame):
                                     font="Arial 20 bold",
                                     fg="white",
                                     bg="black",
-                                    command=load_programming_module)
+                                    command=self.load_programming_module)
         password_button = tk.Button(width=15,
                                     text="Password",
                                     font="Arial 20 bold",
                                     fg="white",
                                     bg="black",
-                                    command=load_password_module)
+                                    command=self.load_password_module)
         networking_button = tk.Button(width=15,
                                 text="Networking",
                                 font="Arial 20 bold",
@@ -46,7 +50,7 @@ class Menu(tk.Frame):
                                 font="Arial 20 bold",
                                 fg="white",
                                 bg="black",
-                                command=load_help)
+                                command=self.load_help)
 
         # display buttons
         programming_button.pack()
@@ -61,7 +65,7 @@ class Menu(tk.Frame):
                                 font="Arial 10 bold",
                                 fg="white",
                                 bg="gray",
-                                command=load_menu)
+                                command=self.load_menu)
         password_generator_button = tk.Button(width=17,
                                 text="Password Generator",
                                 font="Arial 18 bold",
@@ -73,38 +77,37 @@ class Menu(tk.Frame):
                                 fg="white",
                                 bg="black")
 
+    # programming module command
+    def load_programming_module(self):
+        print("Loading Programming Module...")
 
-# programming module command
-def load_programming_module(self):
-    print("Loading Programming Module...")
+    # password module command
+    def load_password_module(self):
+        # removes previous buttons
+        programming_button.pack_forget()
+        password_button.pack_forget()
+        help_button.pack_forget()
+        networking_button.pack_forget()
 
-# password module command
-def load_password_module(self):
-    # removes previous buttons
-    programming_button.pack_forget()
-    password_button.pack_forget()
-    help_button.pack_forget()
-    networking_button.pack_forget()
+        # load new buttons
+        back_button.pack(side=tk.TOP, anchor="nw")
+        back_button.place(x=45, y=45)
+        password_generator_button.pack()
+        password_cracker_button.pack()
 
-    # load new buttons
-    back_button.pack(side=tk.TOP, anchor="nw")
-    back_button.place(x=45, y=45)
-    password_generator_button.pack()
-    password_cracker_button.pack()
+    # help command
+    def load_help(self):
+        print("Loading Help...")
 
-# help command
-def load_help(self):
-    print("Loading Help...")
-
-def load_menu(self):
-    # removes previous buttons
-    password_generator_button.pack_forget()
-    password_cracker_button.pack_forget()
-    back_button.pack_forget()
-    back_button.place_forget()
-    
-    # load new buttons
-    programming_button.pack()
-    password_button.pack()
-    networking_button.pack()
-    help_button.pack()
+    def load_menu(self):
+        # removes previous buttons
+        password_generator_button.pack_forget()
+        password_cracker_button.pack_forget()
+        back_button.pack_forget()
+        back_button.place_forget()
+        
+        # load new buttons
+        programming_button.pack()
+        password_button.pack()
+        networking_button.pack()
+        help_button.pack()
