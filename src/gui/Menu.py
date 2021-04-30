@@ -17,8 +17,8 @@ class Menu(tk.Frame):
 
         path = Image.open(self.photosPath + "PwnableLogo-08.png")
         resize = path.resize((269,55), Image.ANTIALIAS)
-        photo = ImageTk.PhotoImage(resize)
-        label = tk.Label(image=photo)
+        self.photo = ImageTk.PhotoImage(resize)
+        label = tk.Label(image=self.photo)
         # label.image = photo
         label.pack(pady=(25,0))
 
