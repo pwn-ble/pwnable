@@ -13,7 +13,7 @@ from gui.AddUser import AddUser
 root = tk.Tk()
 # TODO: show menu
 # TODO: have menu make user log in or create user
-menu_driver = Menu(root)
+# menu_driver = Menu(root)
 
 # TODO: write challenge prompts
 # TODO: build popups to supplement challenge walkthroug
@@ -23,6 +23,6 @@ menu_driver = Menu(root)
 # TODO: launch user into save point
 # login_driver.wait_window() # wait for login process to finish
 
-# tutorial_driver = Tutorial(root)
+tutorial_driver = Tutorial(root)
 
 root.mainloop()

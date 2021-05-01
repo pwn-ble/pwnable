@@ -12,8 +12,17 @@ class Tutorial(tk.Frame):
         # TODO: be able to read commands from terminal window
             # must satisfy conditions?
             # find file data
+
+        self.master.bind("<<command_entered>>", self.get_command)
         
         self.run() # challenge task driver function
+
+    def get_command(self, event):
+        cmd_file = open(self.terminal.temp_cmd_file_path, 'r') # read users command from temp file
+        cmd = cmd_file.read() # get content
+        cmd_file.close() # close file I/O
+
+        print(cmd)
 
     def run(self):
         """

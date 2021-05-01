@@ -75,6 +75,8 @@ class Terminal(tk.Frame):
         temp_file.write(cmd) # write command to file
         temp_file.close()
 
+        self.master.event_generate("<<command_entered>>")
+
         self.run_command() # open the shell script with our command, get output
         self.command_var.set('') # clear UI input
 
