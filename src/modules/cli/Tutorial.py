@@ -17,7 +17,8 @@ class Tutorial(tk.Frame):
             # must satisfy conditions?
             # find file data
 
-        self.master.bind("<<command_entered>>", self.parse_command)
+        # bind terminal input event to the popup lifecycle
+        self.master.bind("<<command_entered>>", self.parse_command, self.process_input)
         
         self.run() # challenge task driver function
 
@@ -33,12 +34,13 @@ class Tutorial(tk.Frame):
         """
         check to see if the user entered the correct command to satisfy the popup
         """
-        print("debugging: event triggered from popup?")
-        if (self.current_popup.compare(self.current_command)): # if the commands match
-            self.current_popup.destroy() # close the popup
-        else:
-            print("should throw an error in the UI")
-            # TODO: reflect error in the UI
+        print(self.current_command)
+        
+        # if (self.current_popup.compare(self.current_command)): # if the commands match
+        #     self.current_popup.destroy() # close the popup
+        # else:
+        #     print("should throw an error in the UI")
+        #     # TODO: reflect error in the UI
 
     def run(self):
         """
@@ -60,6 +62,4 @@ class Tutorial(tk.Frame):
         self.current_popup = Popup(self.master, text = text)
         self.current_popup.set_desired_command(cmd) # attach command we want the user to enter
         self.current_popup.lift(self.terminal) # show up before the terminal
-        self.current_popup.wait_window()
-        # bind terminal input event to the popup lifecycle
-        self.current_popup.bind("<<command_entered>>", lambda: self.process_input(cmd))
+        # self.current_popup.wait_window()
