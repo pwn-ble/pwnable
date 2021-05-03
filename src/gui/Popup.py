@@ -4,6 +4,8 @@ class Popup(tk.Toplevel): # inherit from tkinter's Toplevel window module
 
     # TODO: give window padding
 
+    desired_command: str
+
     def __init__(self, root: tk.Tk, text = "new popup"):
 
         self.master = root
@@ -17,3 +19,9 @@ class Popup(tk.Toplevel): # inherit from tkinter's Toplevel window module
         # add ok button
         self.bye_button = tk.Button(self, text = "OK", command = self.destroy)
         self.bye_button.pack()
+
+    def set_desired_command(self, cmd: str):
+        self.desired_command = cmd
+
+    def compare(self, cmd: str):
+        return cmd == self.desired_command
