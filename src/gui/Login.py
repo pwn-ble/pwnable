@@ -1,7 +1,7 @@
 import tkinter as tk
 from tkinter import messagebox
 import os
-
+from gui.Menu import Menu
 class Login(tk.Frame):
 
     user_file_path = os.getcwd() + "/src/etc/users.txt" # for handling user login / add
@@ -24,21 +24,21 @@ class Login(tk.Frame):
         self.pass_cred = ""
 
         #new label for user using widget label
-        user_label = tk.Label(root, text = 'Username', bd = 5, font=('arial',20,'bold'))
+        self.user_label = tk.Label(root, text = 'Username', bd = 5, font=('arial',20,'bold'))
         #new entry for the user label
-        user_entry = tk.Entry(root,textvariable = self.user_var, bd = 5, font = ('arial',20,'bold'))
+        self.user_entry = tk.Entry(root,textvariable = self.user_var, bd = 5, font = ('arial',20,'bold'))
         # creating a label for password
-        passw_label = tk.Label(root, text = 'Password', bd = 5, font = ('arial',20,'bold'))
+        self.passw_label = tk.Label(root, text = 'Password', bd = 5, font = ('arial',20,'bold'))
         # creating a entry for password
-        passw_entry=tk.Entry(root,textvariable = self.passwd_var, bd = 5, font = ('arial',20,'bold'), show = '@')
-        sub_btn=tk.Button(root,text = 'Submit', command = lambda: self.attempt(self.check_user))
+        self.passw_entry=tk.Entry(root,textvariable = self.passwd_var, bd = 5, font = ('arial',20,'bold'), show = '@')
+        self.sub_btn=tk.Button(root,text = 'Submit', command = lambda: self.attempt(self.check_user))
 
         # place components in UI
-        user_label.place(relx = .5, rely = .15, anchor= 'center')
-        user_entry.place(relx = .5, rely = .25, anchor= 'center')
-        passw_label.place(relx = .5, rely = .35, anchor= 'center')
-        passw_entry.place(relx = .5, rely = .45, anchor= 'center')
-        sub_btn.place(relx = .5, rely = .7, anchor= 'center')
+        self.user_label.place(relx = .5, rely = .15, anchor= 'center')
+        self.user_entry.place(relx = .5, rely = .25, anchor= 'center')
+        self.passw_label.place(relx = .5, rely = .35, anchor= 'center')
+        self.passw_entry.place(relx = .5, rely = .45, anchor= 'center')
+        self.sub_btn.place(relx = .5, rely = .7, anchor= 'center')
 
     def check_user(self, uname, passwd) -> bool:
         """
@@ -73,3 +73,4 @@ class Login(tk.Frame):
             self.destroy() # exit the login process
         else:
             print('oh no')
+        Menu(self.master)

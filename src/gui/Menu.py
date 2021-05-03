@@ -28,7 +28,7 @@ class Menu(tk.Frame):
 
         # buttons configuration
         self.programming_button = tk.Button(width=15,
-                                    text="Programming",
+                                    text="CLI",
                                     font="Arial 20 bold",
                                     fg="white",
                                     bg="black",
@@ -81,6 +81,7 @@ class Menu(tk.Frame):
     # password module command
     def load_password_module(self):
         # removes previous buttons
+        self.master.title("Password Module")
         self.programming_button.pack_forget()
         self.password_button.pack_forget()
         self.help_button.pack_forget()
@@ -98,6 +99,7 @@ class Menu(tk.Frame):
 
     def load_menu(self):
         # removes previous buttons
+        self.master.title("Pwnable - Menu")
         self.password_generator_button.pack_forget()
         self.password_cracker_button.pack_forget()
         self.back_button.pack_forget()

@@ -24,6 +24,7 @@ def login_input():
     passwd_var.set("")
 
     module_title.pack()
+    title = root.title("Main Menu")
     main_menu_frame.pack()
     login_frame.pack_forget()
     # login_title.pack_forget()
