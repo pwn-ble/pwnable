@@ -11,11 +11,8 @@ class Tutorial(tk.Frame):
         self.master = root # keep tkinter root for object reference
         
         self.terminal = Terminal(self.master) # tutorial window
-        # TODO: be able to read commands from terminal window
-            # must satisfy conditions?
-            # find file data
 
-        self.master.bind("<<command_entered>>", self.get_command)
+        self.master.bind("<<command_entered>>", self.get_command) # bind to command input event
         
         self.run() # challenge task driver function
 

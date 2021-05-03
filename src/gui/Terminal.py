@@ -107,9 +107,9 @@ class Terminal(tk.Frame):
             os.chdir(path) # change into desired directory
 
         else:
-            f = os.popen(cmd) # needs more granular control
+            f = os.popen(cmd) # TODO: needs more granular control
 
-            # TODO: inject the command just entered into the terminal window before its output
+            # prepend command entered to terminal output
             self.cli_output.insert(tk.END, "\n" + self.prompt_label_str + cmd + "\n")
 
             for line in f:
