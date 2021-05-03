@@ -4,6 +4,8 @@ from gui.Popup import Popup
 
 class Tutorial(tk.Frame):
 
+    has_popup_open: bool = False # to lock window if popup is open
+
     def __init__(self, root:tk.Tk):
 
         self.master = root # keep tkinter root for object reference
