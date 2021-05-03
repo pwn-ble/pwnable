@@ -106,18 +106,17 @@ class Terminal(tk.Frame):
             path = self.parse_command(cmd) # parse the path to change into
             os.chdir(path) # change into desired directory
 
-        else:
-            f = os.popen(cmd) # needs more granular control
+        f = os.popen(cmd) # needs more granular control
 
-            # TODO: inject the command just entered into the terminal window before its output
-            self.cli_output.insert(tk.END, "\n" + self.prompt_label_str + cmd + "\n")
+        # TODO: inject the command just entered into the terminal window before its output
+        self.cli_output.insert(tk.END, "\n" + self.prompt_label_str + cmd + "\n")
 
-            for line in f:
-                cli_val = self.cli_output.get("1.0", tk.END) # grab terminal window contents
-                if (cli_val): # if the fake terminal already has content
-                    self.cli_output.insert(tk.END, line) # append to end of content
-                else:
-                    self.cli_output.insert("1.0", line) # add to the beginning of content
+        for line in f:
+            cli_val = self.cli_output.get("1.0", tk.END) # grab terminal window contents
+            if (cli_val): # if the fake terminal already has content
+                self.cli_output.insert(tk.END, line) # append to end of content
+            else:
+                self.cli_output.insert("1.0", line) # add to the beginning of content
 
         self.cli_output.update() # reflect new output in UI
         self.update_command_prompt() # update command line prompt label
