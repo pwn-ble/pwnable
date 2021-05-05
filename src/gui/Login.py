@@ -52,7 +52,9 @@ class Login(tk.Frame):
         tmp_file = open(self.user_file_path, 'r') # read the contents of the user cache file
         tmp = tmp_file.read() # read the user entries
         tmp_file.close() # close IO process
-        if tmp.__contains__(uname + ", " + passwd): return True
+        if tmp.__contains__(uname + ", " + passwd): 
+            self.destroy()
+            return True
         else: return False
             
     def get_input(self):
@@ -70,6 +72,6 @@ class Login(tk.Frame):
         if op_state:
             print('success')
             # do more
-            self.destroy() # exit the login process
+            # self.destroy() # exit the login process
         else:
             print('oh no')

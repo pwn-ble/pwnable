@@ -10,10 +10,9 @@ def hash(input):
     takes a password string and hashes it with a salt nonce
     returns a string including the hash and salt info
     """
-    os.chdir('modules/password/hasher/') # change to the containing directory
 
     # call hash.c with password argument passed to this script
-    output = subprocess.getoutput(f'./a.out {input}')
+    output = subprocess.getoutput(f'src/modules/password/hasher/a.out {input}')
 
     os.chdir('../../../') # change back to /src/
 
