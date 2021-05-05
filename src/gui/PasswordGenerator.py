@@ -9,6 +9,8 @@ class PasswordGenerator(tk.Frame):
     def __init__(self, root: tk.Tk):
         tk.Frame.__init__(self, root)
 
+        self.master = root
+
         self.prompt = """
             passwords are very important, they protect all of your data.
             you should make sure to use strong passwords, 
@@ -18,26 +20,22 @@ class PasswordGenerator(tk.Frame):
         self.promptInfoBlurb = Popup(root, self.prompt) # present an info blurb
         self.promptInfoBlurb.lift(self)
 
-        self.inputLabel = tk.Text(root)
-        self.inputLabel.insert(tk.END, "enter a password to test its strength")
+        self.inputLabel = tk.Label(root, text="enter a password to test its strength")
         self.inputLabel.pack()
 
-        # # self.inputContainer = tk.Box(root, layout="grid")
+        self.passwordVar = tk.StringVar()
 
-        self.inputBox = tk.Entry(root, cnf = {"update_command": self.check_form})
+        self.inputBox = tk.Entry(root, textvariable=self.passwordVar)
         self.inputBox.grid=(0,1) # add a textbox for input
         self.inputBox.pack()
 
-        self.inputErrorLabel = tk.Text(root, text="password should be 6-8 characters", grid=[0,0], color="red", visible=False)
-
-        self.sliderLabel = tk.Text(root).insert(tk.END, "password length:")
-        self.strengthSlider = tk.Slider(root, enabled=False) # add slider to show pass strength
+        self.inputErrorLabel = tk.Label(root, text="password should be 6-8 characters", fg="red")
 
         # suggestionContainer = Box(root, layout="grid")
         # suggestionButton = PushButton(root, text="get a password suggestion", command=generate_password) # button to get a suggested password
         # suggestionOutputLabel = Text(root, visible=False) # initially invisible
 
-        self.submitButton = tk.PushButton(root, text="submit", enabled=False, command=submit)
+        self.submitButton = tk.Button(root, text="submit", command=self.submit)
         self.submitButton.pack()
         
         # self.inputBox.pack()
@@ -58,23 +56,22 @@ class PasswordGenerator(tk.Frame):
         """
         will take the inputs and create a new user from them
         """
-        passwd = hasher.hash(passwordBox.value) # hash the input from the textbox
-        # passwd1 = subprocess.run(['mkpasswd', passwordBox.value])
+        passwd = hasher.hash(self.passwordVar.get()) # hash the input from the textbox
+        print(passwd)
 
         title = 'an intro to passwords'
         b = f'your password has been encrypted.\nthis is what it looks like in the OS: {passwd}'
-        i = info(title, b)
+        i = Popup(self, b)
         b = "this is done so that your password isn't stored in plaintext for everyone to see"
-        i = info(title, b)
+        i = Popup(self, b)
         # another prompt
         b = "however, we are going to crack this password to show how easy it can be"
-        i = info(title, b)
+        i = Popup(self, b)
         # popup with john command
         b = "the password cracking tool 'John the Ripper' is going to be used"
-        i = info(title, b)
+        i = Popup(self, b)
 
-        # run in terminal, wait for output
-        subprocess.call(['/bin/bash'])
+        self.destroy()
 
         # more?
         

@@ -10,6 +10,8 @@ class Terminal(tk.Frame):
     # TODO: implement command history functionality
         # history command doesnt work bc no bash session
 
+    prompt_label_str = "user@pwnable:" + os.getcwd() + " $ "
+
     # temp shell
     temp_path = os.getcwd() + "/src/etc/cache/" # throws files in pwnable data cache
     temp_cmd_file_path = temp_path + "/cmd.sh" # file for storing user's entered command for parsing TODO: merge with hist.txt
@@ -75,6 +77,8 @@ class Terminal(tk.Frame):
         temp_file.write(cmd) # write command to file
         temp_file.close()
 
+        self.master.event_generate("<<command_entered>>")
+
         self.run_command() # open the shell script with our command, get output
         self.command_var.set('') # clear UI input
 
@@ -101,25 +105,25 @@ class Terminal(tk.Frame):
         if (cmd.__contains__("cd")): # if used after a && pipe itll mess up
             path = self.parse_command(cmd) # parse the path to change into
             os.chdir(path) # change into desired directory
-        else:
-            f = os.popen(cmd) # needs more granular control
-            for line in f:
-                cli_val = self.cli_output.get("1.0", tk.END) # grab terminal window contents
-                if (cli_val): # if the fake terminal already has content
-                    self.cli_output.insert(tk.END, "\n" + line) # append to end of content
-                else:
-                    self.cli_output.insert("1.0", line) # add to the beginning of content
+
+        f = os.popen(cmd) # needs more granular control
+
+        self.cli_output.insert(tk.END, "\n" + self.prompt_label_str + cmd + "\n")
+
+        for line in f:
+            cli_val = self.cli_output.get("1.0", tk.END) # grab terminal window contents
+            if (cli_val): # if the fake terminal already has content
+                self.cli_output.insert(tk.END, line) # append to end of content
+            else:
+                self.cli_output.insert("1.0", line) # add to the beginning of content
 
         self.cli_output.update() # reflect new output in UI
-        self.update_command_prompt() # update label
+        self.update_command_prompt() # update command line prompt label
         self.cli_output.see('end') # scroll to bottom of terminal window
 
     def update_command_prompt(self):
-        """
-        grab pwd and put it on the frame's input label;
-        it should look like a terminal prompt
-        """
-        self.prompt_label.config(text="user@pwnable:" + os.getcwd() + "$ ")
+        self.prompt_label_str = "user@pwnable:" + os.getcwd() + " $ "
+        self.prompt_label.config(text=self.prompt_label_str)
 
     def update_command_history(self, cmd):
         cmd_hist_file = open(self.hist_file_path, 'a') # open hist file for append

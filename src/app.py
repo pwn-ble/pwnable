@@ -3,17 +3,20 @@ import platform
 import subprocess
 import tkinter as tk
 # UI component class imports
-from gui.Terminal import Terminal
-from gui.Login import Login
 from gui.Menu import Menu
-from gui.PasswordGenerator import PasswordGenerator
-from modules.cli.Tutorial import Tutorial
+from gui.Login import Login
 from gui.AddUser import AddUser
+from gui.Terminal import Terminal
+# Driver class imports
+from modules.cli.Tutorial import Tutorial
+# Misc class imports
+from gui.PasswordGenerator import PasswordGenerator
 
 root = tk.Tk()
 # TODO: show menu
 # TODO: have menu make user log in or create user
-menu_driver = Menu(root)
+# menu_driver = Menu(root)
+x = PasswordGenerator(root)
 
 # TODO: write challenge prompts
 # TODO: build popups to supplement challenge walkthroug
