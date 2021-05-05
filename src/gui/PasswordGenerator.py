@@ -2,6 +2,7 @@ import tkinter as tk
 import subprocess
 
 from gui.Popup import Popup
+from gui.Terminal import Terminal
 from modules.password.hasher import hasher
 
 class PasswordGenerator(tk.Frame):
@@ -57,21 +58,20 @@ class PasswordGenerator(tk.Frame):
         will take the inputs and create a new user from them
         """
         passwd = hasher.hash(self.passwordVar.get()) # hash the input from the textbox
-        print(passwd)
+        hasher.unshadow(passwd) # write unshadowed password stuff to file
 
         title = 'an intro to passwords'
         b = f'your password has been encrypted.\nthis is what it looks like in the OS: {passwd}'
-        i = Popup(self, b)
+        i = Popup(self.master, b)
         b = "this is done so that your password isn't stored in plaintext for everyone to see"
-        i = Popup(self, b)
+        i = Popup(self.master, b)
         # another prompt
         b = "however, we are going to crack this password to show how easy it can be"
-        i = Popup(self, b)
+        i = Popup(self.master, b)
         # popup with john command
         b = "the password cracking tool 'John the Ripper' is going to be used"
-        i = Popup(self, b)
+        i = Popup(self.master, b)
 
-        self.destroy()
-
-        # more?
+        term = Terminal(self.master)
+        term.run_command(f'john src/etc/cache/fake_unshadow.txt')
         

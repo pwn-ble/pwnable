@@ -14,11 +14,9 @@ def hash(input):
     # call hash.c with password argument passed to this script
     output = subprocess.getoutput(f'src/modules/password/hasher/a.out {input}')
 
-    os.chdir('../../../') # change back to /src/
-
     return output # return hashed input
 
-def unshadow(hash_str, file_name='modules/password/hasher/fake_unshadow'):
+def unshadow(hash_str, file_name='src/etc/cache/fake_unshadow'):
     """
     takes a password hash and formats it for reading by John the ripper
     """
