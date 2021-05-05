@@ -108,7 +108,6 @@ class Terminal(tk.Frame):
 
         f = os.popen(cmd) # needs more granular control
 
-        # TODO: inject the command just entered into the terminal window before its output
         self.cli_output.insert(tk.END, "\n" + self.prompt_label_str + cmd + "\n")
 
         for line in f:

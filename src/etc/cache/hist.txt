@@ -1,3 +1,5 @@
 
+ls -la
+ld
 pwd
-pwd
+ls
