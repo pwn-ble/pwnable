@@ -108,6 +108,12 @@ class Terminal(tk.Frame):
             path = self.parse_command(cmd) # parse the path to change into
             os.chdir(path) # change into desired directory
 
+        if (cmd.__contains__("clear")):
+            self.cli_output.insert(tk.END, "\n\n\n\n\n\n")
+        
+        if (cmd == "cat"):         
+            return
+
         f = os.popen(cmd) # needs more granular control
 
         self.cli_output.insert(tk.END, "\n" + self.prompt_label_str + cmd + "\n")

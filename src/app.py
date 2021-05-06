@@ -23,7 +23,6 @@ login_driver = Login(root) # begin by having the user log in
 login_driver.wait_window() # wait for login process to finish
 
 tutorial_driver = Tutorial(root)
-tutorial_driver.wait_window()
 
 pwd_gen_driver = PasswordGenerator(root)
 pwd_gen_driver.wait_window()

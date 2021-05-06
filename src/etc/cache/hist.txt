@@ -1,5 +1,3 @@
 
-pwd
-ls
-cat README.md
-cat src/etc/password.txt
+cat
+cat

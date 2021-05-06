@@ -58,6 +58,7 @@ class Tutorial(tk.Frame):
 
         pwd_box = Prompt(self.master, "find the file 'password.txt' and enter its contents below", self.desired_pass)
         pwd_box.wait_window()
+        self.destroy()
 
     def show_popup(self, text: str, cmd: str = ""):
         """
