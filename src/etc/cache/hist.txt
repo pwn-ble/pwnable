@@ -1,7 +1,0 @@
-
-ls
-cd
-pwd
-cat
-echo hello
-tree .

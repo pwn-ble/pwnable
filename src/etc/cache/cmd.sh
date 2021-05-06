@@ -1,1 +1,1 @@
-tree .
+hist

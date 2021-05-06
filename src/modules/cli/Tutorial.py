@@ -13,6 +13,9 @@ class Tutorial(tk.Frame):
     def __init__(self, root: tk.Tk):
 
         self.master = root # keep tkinter root for object reference
+
+        self.greeting_label = tk.Label(self.master, text="Welcome to the CLI tutorial")
+        self.greeting_label.pack()
         
         self.terminal = Terminal(self.master) # tutorial window
 
@@ -47,10 +50,6 @@ class Tutorial(tk.Frame):
             # TODO: reflect error in the UI
 
     def run(self):
-        greeting_win = Popup(self.master, text = "welcome to the CLI tutorial")
-        greeting_win.pack()
-        greeting_win.wait_window()
-
         self.show_popup("the first thing you'll want to do is find out where you are.\nyou can do this by typing 'pwd'.", "pwd")
         self.show_popup("the output shows you a string of directories, or folders.\nthis is where you are in the file system.\nthe last folder in the string is your 'present working directory', or 'pwd'.")
         self.show_popup("since you know that you are inside of a folder right now, you would naturally want to know what files are in the folder.\nYou can check them out by entering 'ls'", "ls")
@@ -61,9 +60,6 @@ class Tutorial(tk.Frame):
         self.destroy()
 
     def show_popup(self, text: str, cmd: str = ""):
-        """
-        """
         self.current_popup = Popup(self.master, text = text)
         self.current_popup.set_desired_command(cmd) # attach command we want the user to enter
         self.current_popup.pack()
-        self.current_popup.wait_window()

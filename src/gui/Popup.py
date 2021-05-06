@@ -6,10 +6,12 @@ class Popup(tk.Frame): # inherit from tkinter's Toplevel window module
 
     desired_command: str
 
-    def __init__(self, root: tk.Tk, text = "new popup"):
+    def __init__(self, root:tk.Tk, text="new popup"):
 
+        # assign args to class props
         self.master = root
         self.text = text
+
         tk.Frame.__init__(self, self.master) # superclass constructor
 
         # add blurb
@@ -17,8 +19,8 @@ class Popup(tk.Frame): # inherit from tkinter's Toplevel window module
         self.blurb.pack()
 
         # add ok button
-        self.bye_button = tk.Button(self.master, text = "OK", command = self.destroy)
-        self.bye_button.pack()
+        # self.bye_button = tk.Button(self.master, text = "OK", command = lambda: self.event_generate("<<ok_pressed>>"))
+        # self.bye_button.pack()
 
     def set_desired_command(self, cmd: str):
         self.desired_command = cmd
