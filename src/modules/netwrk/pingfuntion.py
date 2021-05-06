@@ -16,7 +16,7 @@ class Networking(tk.Frame):
         self.master = root
 
         self.master.title("Networking | Obtaining the IP address of your device")
-        self.master.geometry('800x480')
+        self.master.geometry('800x500')
 
         self.web_var=tk.StringVar()
         self.ping_var=tk.StringVar()
@@ -38,7 +38,7 @@ class Networking(tk.Frame):
 
         self.submit_button.pack()
 
-        self.terminal_instance = Terminal(self.master)
+        self.terminal_instance = Terminal(self.master) # terminal window component
     
     def ping_ammount(self):
         ping_ammt = self.ping_var.get()
@@ -54,7 +54,8 @@ class Networking(tk.Frame):
         res = "Previously pinged: " + web_info + " " + ping_ammt + " times."
         self.webaddy_lable.configure(text= res)
 
-        subprocess.run(["ping", "-c", ping_ammt, web_info])
+        # subprocess.run(["ping", "-c", ping_ammt, web_info])
+        self.terminal_instance.run_command(f'ping -c {ping_ammt} {web_info}')
         print ("Website Entered: " + web_info)
 
     def site_entry(self):
