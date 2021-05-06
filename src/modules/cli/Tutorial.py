@@ -48,7 +48,7 @@ class Tutorial(tk.Frame):
 
     def run(self):
         greeting_win = Popup(self.master, text = "welcome to the CLI tutorial")
-        greeting_win.lift(self.terminal)
+        greeting_win.pack()
         greeting_win.wait_window()
 
         self.show_popup("the first thing you'll want to do is find out where you are.\nyou can do this by typing 'pwd'.", "pwd")
@@ -65,5 +65,5 @@ class Tutorial(tk.Frame):
         """
         self.current_popup = Popup(self.master, text = text)
         self.current_popup.set_desired_command(cmd) # attach command we want the user to enter
-        self.current_popup.lift(self.terminal) # show up before the terminal
+        self.current_popup.pack()
         self.current_popup.wait_window()

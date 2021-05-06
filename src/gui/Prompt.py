@@ -1,13 +1,13 @@
 import tkinter as tk
 from .Popup import Popup
 
-class Prompt(tk.Toplevel):
+class Prompt(tk.Frame):
 
     def __init__(self, root:tk.Tk, text: str, password: str):
         self.master = root
         self.password = password
 
-        super().__init__(master = self.master) # superclass constructor
+        tk.Frame.__init__(self, self.master) # superclass constructor
 
         self.blurb = tk.Label(self, text = text)
         self.blurb.pack()

@@ -1,1 +1,1 @@
-cat src/etc/password.txt
+tree .

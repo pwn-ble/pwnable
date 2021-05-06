@@ -5,11 +5,6 @@ import tkinter as tk
 
 class Terminal(tk.Frame):
 
-    # TODO: make background black
-    # TODO: move input box to the right side of window
-    # TODO: implement command history functionality
-        # history command doesnt work bc no bash session
-
     prompt_label_str = "user@pwnable:" + os.getcwd() + " $ "
 
     # temp shell
@@ -18,7 +13,7 @@ class Terminal(tk.Frame):
     hist_file_path = temp_path + "hist.txt" # file storing users previous commands
 
     def __init__(self, root:tk.Tk):
-        tk.Frame.__init__(self, root, cnf={"background":"black"}) # call tk superclass constructor
+        tk.Frame.__init__(self, root) # call tk superclass constructor
         # cnf doesn't work how i want it to
 
         open(self.hist_file_path, 'w').close() # clear history file if it exists
@@ -43,29 +38,24 @@ class Terminal(tk.Frame):
         self.prompt_label.pack()
 
         self.command_input = tk.Entry(self.master, textvariable=self.command_var)
-        # bind arrow keys to the history cycling functions
-        self.command_input.bind("<Up>", self.go_up)
-        self.command_input.bind("<Down>", self.go_down)
         self.command_input.pack()
 
-    # TODO: def clean_input(input: str):
-
     # TODO
-    def go_up(self, event):
-        """
-        retrieve the preceeding command in the history index
-        """
-        print("up")
-        # self.command_var.set('')
+    # def go_up(self, event):
+    #     """
+    #     retrieve the preceeding command in the history index
+    #     """
+    #     print("up")
+    #     self.command_var.set('')
     
     # TODO
-    def go_down(self, event):
-        """
-        move forward in the command history index;
-        return that command;
-        """
-        print("down")
-        # self.command_var.set('')
+    # def go_down(self, event):
+    #     """
+    #     move forward in the command history index;
+    #     return that command;
+    #     """
+    #     print("down")
+    #     self.command_var.set('')
 
     def handle_input(self, event):
         """
