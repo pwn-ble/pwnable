@@ -45,7 +45,7 @@ root.geometry("800x480")
 # set background color
 root.configure(background="black")
 # Pwnable logo
-path = Image.open("PwnableLogos/PwnableLogo-08.png")
+path = Image.open("src/gui/PwnableLogos/PwnableLogo-08.png")
 resize=path.resize((269,55), Image.ANTIALIAS)
 photo = ImageTk.PhotoImage(resize)
 label = tk.Label(bg='black',image=photo)

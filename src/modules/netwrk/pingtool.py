@@ -3,6 +3,7 @@
 #it must be ran in sudo
 import tkinter as tk
 from tkinter import messagebox
+from tkinter import *
 from pythonping import ping
 import subprocess
 
@@ -20,6 +21,9 @@ root.geometry('800x480')
 web_var=tk.StringVar()
 ping_var=tk.StringVar()
 
+
+
+
 #trying to make a notification pop up to explain whats happening
 #notification =wi()
 #root.wm_withdraw()
@@ -27,6 +31,7 @@ ping_var=tk.StringVar()
 #notification.destroy()
 
 #entery boxfor website
+
 def site_entry():
     web_info = web_var.get()
     print ("Website Entered: " + web_info)
@@ -38,8 +43,6 @@ def ping_ammount():
     #global ping_ammt
     print ("Number of pings sent: " + ping_ammt)
     #totalpings_lable.configure
-
-
 
 
 #submit button
@@ -75,3 +78,17 @@ totalpings_entry.pack()
 submit_button.pack()
 
 root.mainloop()
+
+#win = tk.Tk()
+
+#win.geometry("200x200")
+
+#def open():
+#    top = Toplevel(win)
+#    top.mainloop()
+
+#btn = Button(win, text="open", command=open)
+
+#btn.place(x=75, y=50)
+
+#win.mainloop()

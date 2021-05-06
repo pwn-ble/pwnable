@@ -43,7 +43,7 @@ title = root.title("Pwnable")
 root.geometry("800x480")
 # Pwnable menu title
 
-path = Image.open("PwnableLogos/PwnableLogo-08.png")
+path = Image.open("src/gui/PwnableLogos/PwnableLogo-08.png")
 resize=path.resize((269,55), Image.ANTIALIAS)
 photo = ImageTk.PhotoImage(resize)
 label = tk.Label(image=photo)
