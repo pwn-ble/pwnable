@@ -1,1 +1,1 @@
-clear
+cat src/etc/password.txt

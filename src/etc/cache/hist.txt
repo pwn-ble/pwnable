@@ -1,4 +1,5 @@
 
+pwd
 ls
-cat deployment.md
-clear
+cat README.md
+cat src/etc/password.txt
