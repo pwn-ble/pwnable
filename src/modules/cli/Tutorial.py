@@ -44,14 +44,12 @@ class Tutorial(tk.Frame):
         TODO: include tutorial scripting stuff in order here
         TODO: wrap popup/wait cycle in an abstraction?
         """
-        greeting_win = Popup(self.master, text = "welcome to the CLI tutorial").wait_window()
+        greeting_win = Popup(self.master, text = "welcome to the CLI tutorial")
 
         self.show_popup("the first thing you'll want to do is find out where you are.\nyou can do this by typing 'pwd'.", "pwd")
-
-        # self.show_popup("the output shows you a string of directories, or folders.\nthis is where you are in the file system.\nthe last folder in the string is your 'present working directory', or 'pwd'.").wait_window()
-        # ls_p = self.show_popup("since you know that you are inside of a folder right now, you would naturally want to know what files are in the folder.\nYou can check them out by entering 'ls'").wait_window()
-
-        # cat_p = self.show_popup("if you want to see what a file contains, you can 'concatentate' it.\nyou do this by typing 'cat', followed by the filename.").wait_window()
+        pwd_conclusion = self.show_popup(self.master, "the output shows you a string of directories, or folders.\nthis is where you are in the file system.\nthe last folder in the string is your 'present working directory', or 'pwd'.")
+        self.show_popup("since you know that you are inside of a folder right now, you would naturally want to know what files are in the folder.\nYou can check them out by entering 'ls'", "ls")
+        self.show_popup("if you want to see what a file contains, you can 'concatentate' it.\nyou do this by typing 'cat', followed by the filename.", "cat")
 
     def show_popup(self, text: str, cmd: str):
         """
@@ -59,4 +57,4 @@ class Tutorial(tk.Frame):
         self.current_popup = Popup(self.master, text = text)
         self.current_popup.set_desired_command(cmd) # attach command we want the user to enter
         self.current_popup.lift(self.terminal) # show up before the terminal
-        # self.current_popup.wait_window()
+        self.current_popup.wait_window()
