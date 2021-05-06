@@ -1,11 +1,30 @@
 import os
 import platform
 import subprocess
+import tkinter as tk
+# UI component class imports
+from gui.Menu import Menu
+from gui.Login import Login
+from gui.AddUser import AddUser
+from gui.Terminal import Terminal
+# Driver class imports
+from modules.cli.Tutorial import Tutorial
+# Misc class imports
+from gui.PasswordGenerator import PasswordGenerator
 
-# lauch pwnable home screen script
-if (platform.system() == 'Windows'):
-    subprocess.call(['python.exe', '.\\gui\\menu.py'])
-else:
-    subprocess.call(['python3', './gui/menu.py'])
+root = tk.Tk()
+# TODO: show menu
+# TODO: have menu make user log in or create user
+# menu_driver = Menu(root)
 
-# should contain some generic loader functions ??
+login_driver = Login(root) # begin by having the user log in
+# TODO: check progress, if any
+# TODO: launch user into save point
+login_driver.wait_window() # wait for login process to finish
+
+tutorial_driver = Tutorial(root)
+
+pwd_gen_driver = PasswordGenerator(root)
+pwd_gen_driver.wait_window()
+
+root.mainloop()
