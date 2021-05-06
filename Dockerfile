@@ -34,6 +34,7 @@ RUN apt-get update && apt-get install -y -q \
     vim \
     wget \
     whois
+    
 
 # clean apt cache
 RUN apt-get clean
