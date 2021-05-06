@@ -3,18 +3,24 @@ from tkinter.messagebox import showwarning
 import subprocess
 
 def open_terminal_win():
-    popen = subprocess.Popen(["xterm"], stdout=subprocess.PIPE)
-    
-    for stdout_line in iter(popen.stdout.readline, ""):
-        print(stdout_line)
+    popen = subprocess.Popen(["xterm"], stdout=subprocess.PIPE, shell=True)    
+    while True:
+        output = popen.stdout.readline()
+        if popen.poll() is not None:
+            break
+        if output:
+            print(output.strip().decode())
+        
+    rc = popen.poll()
+    return rc
         
     # popen.stdout.close()
-    return_code = popen.wait()
+    # return_code = popen.wait()
 
-    if return_code:
-        raise subprocess.CalledProcessError(return_code, cmd)
+    # if return_code:
+    #     raise subprocess.CalledProcessError(return_code, cmd)
 
-open_terminal_win()
+print(open_terminal_win())
 
 # root = tk.Tk()
 # root.geometry("600x500")
