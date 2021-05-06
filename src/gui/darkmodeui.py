@@ -59,7 +59,7 @@ module_title.pack()
 # buttons configuration
 main_menu_frame = tk.Frame()
 programming_button = tk.Button(width=15,
-                               text="Programming",
+                               text="CLI",
                                font="Arial 20 bold",
                                fg="white",
                                bg="black",

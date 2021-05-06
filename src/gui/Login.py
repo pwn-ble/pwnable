@@ -73,6 +73,11 @@ class Login(tk.Frame):
             print('success')
             # do more
             # self.destroy() # exit the login process
+            self.user_label.place_forget()
+            self.user_entry.place_forget()
+            self.passw_label.place_forget()
+            self.passw_entry.place_forget()
+            self.sub_btn.place_forget()   
         else:
             print('oh no')
         Menu(self.master)
