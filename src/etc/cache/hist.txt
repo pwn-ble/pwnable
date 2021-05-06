@@ -1,0 +1,4 @@
+
+ls
+cat deployment.md
+clear

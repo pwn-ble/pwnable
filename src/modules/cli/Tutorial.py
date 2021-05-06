@@ -1,6 +1,8 @@
 import tkinter as tk
 from gui.Terminal import Terminal # how to import classes in separate filesystem branch
 from gui.Popup import Popup
+from gui.Prompt import Prompt
+from modules.password.generator import generator
 
 class Tutorial(tk.Frame):
 
@@ -13,6 +15,11 @@ class Tutorial(tk.Frame):
         self.master = root # keep tkinter root for object reference
         
         self.terminal = Terminal(self.master) # tutorial window
+
+        self.desired_pass = generator.gen(15) # generate a random string to cat to target file
+        target_file = open("src/etc/password.txt", 'w')
+        target_file.write(self.desired_pass)
+        target_file.close()
 
         # bind terminal input event to the popup lifecycle
         self.master.bind("<<command_entered>>", self.parse_command, self.process_input)
@@ -33,25 +40,26 @@ class Tutorial(tk.Frame):
         """
         print(self.current_command)
         
-        # if (self.current_popup.compare(self.current_command)): # if the commands match
-        #     self.current_popup.destroy() # close the popup
-        # else:
-        #     print("should throw an error in the UI")
-        #     # TODO: reflect error in the UI
+        if (self.current_popup.compare(self.current_command)): # if the commands match
+            self.current_popup.destroy() # close the popup
+        else:
+            print("should throw an error in the UI")
+            # TODO: reflect error in the UI
 
     def run(self):
-        """
-        TODO: include tutorial scripting stuff in order here
-        TODO: wrap popup/wait cycle in an abstraction?
-        """
         greeting_win = Popup(self.master, text = "welcome to the CLI tutorial")
+        greeting_win.lift(self.terminal)
+        greeting_win.wait_window()
 
         self.show_popup("the first thing you'll want to do is find out where you are.\nyou can do this by typing 'pwd'.", "pwd")
-        pwd_conclusion = self.show_popup(self.master, "the output shows you a string of directories, or folders.\nthis is where you are in the file system.\nthe last folder in the string is your 'present working directory', or 'pwd'.")
+        self.show_popup("the output shows you a string of directories, or folders.\nthis is where you are in the file system.\nthe last folder in the string is your 'present working directory', or 'pwd'.")
         self.show_popup("since you know that you are inside of a folder right now, you would naturally want to know what files are in the folder.\nYou can check them out by entering 'ls'", "ls")
         self.show_popup("if you want to see what a file contains, you can 'concatentate' it.\nyou do this by typing 'cat', followed by the filename.", "cat")
 
-    def show_popup(self, text: str, cmd: str):
+        pwd_box = Prompt(self.master, "find the file 'password.txt' and enter its contents below", self.desired_pass)
+        pwd_box.wait_window()
+
+    def show_popup(self, text: str, cmd: str = ""):
         """
         """
         self.current_popup = Popup(self.master, text = text)
