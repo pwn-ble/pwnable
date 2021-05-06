@@ -1,3 +1,8 @@
 
-cat
-cat
+pwd
+ls
+cat resourcs.md
+cat README.md
+ls src
+ls src/etc/
+cat src/etc/password.txt

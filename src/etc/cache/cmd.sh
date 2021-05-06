@@ -1,1 +1,1 @@
-cat
+cat src/etc/password.txt
