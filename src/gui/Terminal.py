@@ -90,17 +90,19 @@ class Terminal(tk.Frame):
         path = shlex.split(cmd) # get path to resolve
         return os.path.abspath(path[1]) # return resolved path
 
-    def run_command(self):
+    def run_command(self, command=""):
         """
         read the command from the user from temp command shell script;
         execute it;
         get the output from command;
         print it to the console window;
         """
-        cmd_file = open(self.temp_cmd_file_path, 'r') # read users command from temp file
-        cmd = cmd_file.read() # get content
-        self.update_command_history(cmd) # add command to history file
-        cmd_file.close() # close file I/O
+        cmd = command
+        if (command == ""):
+            cmd_file = open(self.temp_cmd_file_path, 'r') # read users command from temp file
+            cmd = cmd_file.read() # get content
+            self.update_command_history(cmd) # add command to history file
+            cmd_file.close() # close file I/O
 
         if (cmd.__contains__("cd")): # if used after a && pipe itll mess up
             path = self.parse_command(cmd) # parse the path to change into
