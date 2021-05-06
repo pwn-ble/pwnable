@@ -25,3 +25,13 @@
 1. a script that goes through the walkthrough steps
     - have the script run in terminal
 2. a way to open a terminal
+
+
+## ToDO within the CLI prompt
+1. Make all the popups withion the same window as the terminal windows, ontop of the windows
+2. Make the popups exit when the correct command
+
+3. *arrive at the command popup for password* We need to add the ability to explain, and to ue the "tree" and the "grep" command to help them find the password.txt file that blake had made that injecets itself 
+
+4. Make/ Show the users the ls command wiht the -a option, after they get to the password.txt file
+
