@@ -29,9 +29,8 @@ class Terminal(tk.Frame):
         root.wm_title(self.window_title) # set window title
         
         # add UI elements
-            # separate pack statements to prevent variable value being cleared
         self.cli_output = tk.Text(self.master, bg="black", fg="green")
-        self.cli_output.pack()
+        self.cli_output.pack() # separate pack statements to prevent variable value being cleared
 
         self.prompt_label = tk.Label(self.master)
         self.update_command_prompt()
@@ -87,8 +86,9 @@ class Terminal(tk.Frame):
         get the output from command;
         print it to the console window;
         """
-        cmd = command
-        if (command == ""):
+        cmd = command # grab the command argument, if it exists
+
+        if (command == ""): # no command argument, get it from command history file
             cmd_file = open(self.temp_cmd_file_path, 'r') # read users command from temp file
             cmd = cmd_file.read() # get content
             self.update_command_history(cmd) # add command to history file
@@ -98,11 +98,16 @@ class Terminal(tk.Frame):
             path = self.parse_command(cmd) # parse the path to change into
             os.chdir(path) # change into desired directory
 
+        # TODO fix, or delete
         if (cmd.__contains__("clear")):
-            self.cli_output.insert(tk.END, "\n\n\n\n\n\n")
+            self.cli_output.insert(tk.END, "\n\n\n\n\n\n\n\n\n")
+            self.cli_output.update()
+            self.update_command_prompt()
+            self.cli_output.see('end')
+            return
         
         if (cmd == "cat"):         
-            return
+            return # do nothing, so the program doesnt wait for STDIN
 
         f = os.popen(cmd) # needs more granular control
 

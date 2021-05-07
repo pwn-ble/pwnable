@@ -1,0 +1,9 @@
+
+pwd
+ls
+tree .
+ls -la
+cat resources.md
+cat resources.md | grep group
+cat resources.md | grep #
+tree . | grep password.txt

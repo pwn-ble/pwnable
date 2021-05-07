@@ -1,1 +1,1 @@
-hist
+tree . | grep password.txt

@@ -1,0 +1,5 @@
+The first thing you'll want to do is find out where you are. Do this by typing 'pwd'
+To find out what's in the 'present working directory (pwd)', type 'ls'
+Using the 'tree' command is an easy way to see the files past the current directory. Try 'tree .'
+Seeing the contents of files in a directory is as easy as typing 'cat', followed by the filename
+If you want to search that output for specific text, you can chain 'cat' to 'grep' like: 'cat <file> | grep <text>'
