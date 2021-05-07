@@ -12,7 +12,7 @@ class Tutorial(tk.Frame):
     prompt_index = 0
 
     def __init__(self, root: tk.Tk):
-
+        tk.Frame.__init__(self, root) # tkinter Frame constructor
         self.master = root # keep tkinter root for object reference
 
         # generate a random string to cat to target file
@@ -45,16 +45,12 @@ class Tutorial(tk.Frame):
         for c in cmds:
             self.commands += [c.rstrip()]
 
-        print(cmds)
-
     def get_prompts(self):
         prompt_file = open("src/modules/cli/prompts.txt")
         prompts = prompt_file.readlines()
         prompt_file.close()
         for line in prompts:
             self.prompts += [line] # add each prompt from file
-
-        print(prompts)
 
     def parse_command(self, event):
         """
@@ -91,5 +87,6 @@ class Tutorial(tk.Frame):
         self.current_popup.blurb.config(text=text) # cheange popup text
         self.current_popup.set_desired_command(cmd) # attach command we want the user to enter
 
-    def try_level_pass(self,event):
-        if (self.password_prompt.check()): self.master.destroy()
+    def try_level_pass(self, event):
+        if (self.password_prompt.check()): 
+            self.master.winfo_children().destroy()

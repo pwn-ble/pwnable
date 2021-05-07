@@ -106,7 +106,7 @@ class Terminal(tk.Frame):
             self.cli_output.see('end')
             return
         
-        if (cmd == "cat"):         
+        if (cmd == "cat" or cmd == "cat "):
             return # do nothing, so the program doesnt wait for STDIN
 
         f = os.popen(cmd) # needs more granular control

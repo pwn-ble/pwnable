@@ -17,14 +17,15 @@ root = tk.Tk()
 # TODO: have menu make user log in or create user
 # menu_driver = Menu(root)
 
-# login_driver = Login(root) # begin by having the user log in
+login_driver = Login(root) # begin by having the user log in
 # TODO: check progress, if any
 # TODO: launch user into save point
-# login_driver.wait_window() # wait for login process to finish
+login_driver.wait_window() # wait for login process to finish
 
 tutorial_driver = Tutorial(root)
+tutorial_driver.wait_window()
 
-# pwd_gen_driver = PasswordGenerator(root)
-# pwd_gen_driver.wait_window()
+pwd_gen_driver = PasswordGenerator(root)
+pwd_gen_driver.wait_window()
 
 root.mainloop()
