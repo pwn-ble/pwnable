@@ -1,1 +1,1 @@
-tree . | grep password.txt
+cat src/etc/password.txt

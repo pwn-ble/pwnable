@@ -1,9 +1,15 @@
 
 pwd
 ls
-tree .
+tree
+cd src
+cd ..
+cat --help
+tree --help
+tree -P python
 ls -la
 cat resources.md
-cat resources.md | grep group
-cat resources.md | grep #
-tree . | grep password.txt
+cat resources.md | grep sta
+tree | grep password
+cat src/etc/password.tst
+cat src/etc/password.txt

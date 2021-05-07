@@ -34,8 +34,9 @@ class Tutorial(tk.Frame):
 
         # initialize Popup component
         self.current_popup = Popup(self.master, self.prompts[self.prompt_index])
-        
-        self.run() # challenge task driver function
+        self.show_popup(self.prompts[self.prompt_index], self.commands[self.prompt_index])
+
+        self.master.bind("<<passwd_attempt>>", self.try_level_pass)
 
     def get_commands(self):
         cmd_file = open("src/modules/cli/commands.txt")
@@ -66,21 +67,29 @@ class Tutorial(tk.Frame):
 
     def process_input(self, event):
         """
-        check to see if the user entered the correct command to satisfy the popup
+        check to see if the user entered the correct command to satisfy the popup;
+        cycle in the next tutorial prompt 
         """
-
         if (self.current_popup.compare(self.current_command)): # if the commands match
-            self.prompt_index += 1 # increment the index to grab next prompt
-            self.show_popup(self.prompts[self.prompt_index], self.commands[self.prompt_index]) # cycle in the next prompt to UI
-        else:
+            if ((self.prompt_index + 1) < len(self.prompts)): # check if hitting the end of the prompts
+                # increment the index to grab next prompt
+                self.prompt_index += 1
+                # cycle in the next prompt to UI
+                self.show_popup(self.prompts[self.prompt_index], self.commands[self.prompt_index])
+            else:
+                self.current_popup.blurb.config(text="use these commands to find the password in 'password.txt'")
+                self.open_password_prompt()
+        else: # not the correct command entered
             print("should throw an error in the UI")
             # TODO: reflect error in the UI
 
-    def run(self):
-        self.show_popup(self.prompts[self.prompt_index], self.commands[self.prompt_index])
-
-        # pwd_box = Prompt(self.master, "find the file 'password.txt' and enter its contents below", self.desired_pass)
+    def open_password_prompt(self):
+        self.password_prompt = Prompt(self.master, "password: ", self.desired_pass)
+        self.password_prompt.pack()
 
     def show_popup(self, text:str, cmd:str = ""):
         self.current_popup.blurb.config(text=text) # cheange popup text
         self.current_popup.set_desired_command(cmd) # attach command we want the user to enter
+
+    def try_level_pass(self,event):
+        if (self.password_prompt.check()): self.master.destroy()

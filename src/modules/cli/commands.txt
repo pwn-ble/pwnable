@@ -1,5 +1,10 @@
 pwd
 ls
 tree
+cd
+cd ..
+--help
+tree -P
 cat
 | grep
+tree | grep
