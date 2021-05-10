@@ -4,7 +4,7 @@ import os
 
 class Login(tk.Frame):
 
-    user_file_path = os.getcwd() + "/src/etc/users.txt" # for handling user login / add
+    user_file_path = os.getcwd() + "/etc/users.txt" # for handling user login / add
 
     def __init__(self, root: tk.Tk):
         tk.Frame.__init__(self, root) # tkinter Frame constructor

@@ -3,6 +3,7 @@ from gui.Terminal import Terminal # how to import classes in separate filesystem
 from gui.Popup import Popup
 from gui.Prompt import Prompt
 from modules.password.generator import generator
+import os
 
 class Tutorial(tk.Frame):
 
@@ -17,7 +18,7 @@ class Tutorial(tk.Frame):
 
         # generate a random string to cat to target file
         self.desired_pass = generator.gen(15)
-        target_file = open("src/etc/password.txt", 'w')
+        target_file = open(os.getcwd() + "/etc/password.txt", 'w')
         target_file.write(self.desired_pass)
         target_file.close()
 
