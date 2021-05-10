@@ -16,9 +16,9 @@ root = tk.Tk()
 # TODO: show menu
 # TODO: have menu make user log in or create user
 
-menu_driver = Menu(root)
+#menu_driver = Menu(root)
 # x = PasswordGenerator(root)
-# Login(root)
+Login(root)
 
 # TODO: write challenge prompts
 # TODO: build popups to supplement challenge walkthroug

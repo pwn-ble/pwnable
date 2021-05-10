@@ -4,7 +4,7 @@ import os
 from gui.Menu import Menu
 class Login(tk.Frame):
 
-    user_file_path = os.getcwd() + "/src/etc/users.txt" # for handling user login / add
+    user_file_path = os.getcwd() + "/etc/users.txt" # for handling user login / add
 
     def __init__(self, root: tk.Tk):
         tk.Frame.__init__(self, root) # tkinter Frame constructor
@@ -77,7 +77,8 @@ class Login(tk.Frame):
             self.user_entry.place_forget()
             self.passw_label.place_forget()
             self.passw_entry.place_forget()
-            self.sub_btn.place_forget()   
+            self.sub_btn.place_forget()
+            Menu(self.master)
         else:
             print('oh no')
-        Menu(self.master)
+            

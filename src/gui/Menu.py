@@ -4,7 +4,7 @@ from PIL import ImageTk, Image
 
 class Menu(tk.Frame):
 
-    photosPath = os.getcwd() + "/src/gui/PwnableLogos/"
+    photosPath = os.getcwd() + "/gui/PwnableLogos/"
 
     def __init__(self, root:tk.Tk):
         tk.Frame.__init__(self, root)
@@ -13,6 +13,8 @@ class Menu(tk.Frame):
         # Pwnable window title
         self.master.title("Pwnable - Menu")
         self.master.geometry("800x480")
+        
+        
         # Pwnable menu title
 
         path = Image.open(self.photosPath + "PwnableLogo-08.png")
