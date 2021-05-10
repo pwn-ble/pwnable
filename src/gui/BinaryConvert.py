@@ -18,6 +18,7 @@ def hex_to_decimal(value):
 class BinaryConvert():
     C_FONT = ("Consolas", 16)
     C_TXT_MAXLEN = 32
+    
     def __init__(self):
         self.master = tk.Tk()
         self.master.title("Pwnable - Binary Converter")
