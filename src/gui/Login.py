@@ -2,6 +2,8 @@ import tkinter as tk
 from tkinter import messagebox
 import os
 
+
+
 class Login(tk.Frame):
 
     user_file_path = os.getcwd() + "/etc/users.txt" # for handling user login / add
@@ -75,3 +77,4 @@ class Login(tk.Frame):
             # self.destroy() # exit the login process
         else:
             print('oh no')
+            messagebox.showwarning("Incorrect", "Username or Password was incorrect, please try again!")
