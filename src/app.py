@@ -13,6 +13,7 @@ from modules.cli.Tutorial import Tutorial
 from gui.PasswordGenerator import PasswordGenerator
 
 root = tk.Tk()
+root.iconbitmap(os.getcwd() + "/gui/PwnableLogos/thumbnail_PwnableLogo-06.ico")
 # TODO: show menu
 # TODO: have menu make user log in or create user
 
