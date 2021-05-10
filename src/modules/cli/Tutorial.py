@@ -40,14 +40,14 @@ class Tutorial(tk.Frame):
         self.master.bind("<<passwd_attempt>>", self.try_level_pass)
 
     def get_commands(self):
-        cmd_file = open("src/modules/cli/commands.txt")
+        cmd_file = open(os.getcwd() + "/modules/cli/commands.txt")
         cmds = cmd_file.readlines()
         cmd_file.close()
         for c in cmds:
             self.commands += [c.rstrip()]
 
     def get_prompts(self):
-        prompt_file = open("src/modules/cli/prompts.txt")
+        prompt_file = open(os.getcwd() + "/modules/cli/prompts.txt")
         prompts = prompt_file.readlines()
         prompt_file.close()
         for line in prompts:
