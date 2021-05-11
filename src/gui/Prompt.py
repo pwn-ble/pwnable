@@ -10,7 +10,6 @@ class Prompt(tk.Frame):
         tk.Frame.__init__(self, self.master) # superclass constructor
 
         self.blurb = tk.Label(self, text = text)
-        self.blurb.config(font="Consolas 50")
         self.blurb.pack()
 
         self.pw_var = tk.StringVar()

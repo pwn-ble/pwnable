@@ -23,7 +23,7 @@ class Menu(tk.Frame):
         self.photo = ImageTk.PhotoImage(resize)
         self.label = tk.Label(image=self.photo)
         # label.image = photo
-        self.label.pack(pady=(25,0))
+        self.label.pack(pady=15)
 
         # Module menu title
         self.module_title = tk.Label(root, text = "Modules", font="Consolas 25 bold")
