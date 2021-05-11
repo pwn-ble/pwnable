@@ -57,6 +57,8 @@ class Tutorial(tk.Frame):
         """
         read the most recently entered command from the cache file;
         """
+        print("parsing command")
+
         cmd_file = open(self.terminal.temp_cmd_file_path, 'r') # read users command from temp file
         self.current_command = cmd_file.read() # set to class memory
         cmd_file.close() # close file I/O

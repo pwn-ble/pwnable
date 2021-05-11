@@ -85,7 +85,7 @@ class Menu(tk.Frame):
         self.back_button.place(x=10, y=21)#back button placement so it isnt covering the terminal screen
         self.module_title.pack_forget()
         self.label.pack_forget()
-        Tutorial(self.terminal_frame)
+        self.terminal_frame = Tutorial(self.master)
         self.terminal_frame.pack()
 
 
