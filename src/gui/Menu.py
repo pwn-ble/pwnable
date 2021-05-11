@@ -63,9 +63,9 @@ class Menu(tk.Frame):
         self.networking_button.pack()
         self.help_button.pack()
 
-        self.back_button = tk.Button(width=6,
+        self.back_button = tk.Button(width=4,
                                 text="Back",
-                                font="Consolas 10 bold",
+                                font="Consolas 8 bold",
                                 fg="white",
                                 bg="gray",
                                 command=self.load_menu)
@@ -82,7 +82,7 @@ class Menu(tk.Frame):
 
         # load new buttons
         self.back_button.pack(side=tk.TOP, anchor="nw")
-        self.back_button.place(x=45, y=45)
+        self.back_button.place(x=10, y=21)#back button placement so it isnt covering the terminal screen
         self.module_title.pack_forget()
         self.label.pack_forget()
         Tutorial(self.terminal_frame)

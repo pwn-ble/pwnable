@@ -30,6 +30,7 @@ class Terminal(tk.Frame):
         
         # add UI elements
         self.cli_output = tk.Text(self.master, bg="black", fg="green")
+        self.cli_output.config(height=23)#Resizes terminal window height so the prompt text isnt cut off
         self.cli_output.pack() # separate pack statements to prevent variable value being cleared
 
         self.prompt_label = tk.Label(self.master)
