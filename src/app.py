@@ -12,7 +12,9 @@ from modules.cli.Tutorial import Tutorial
 # Misc class imports
 from gui.PasswordGenerator import PasswordGenerator
 
+
 root = tk.Tk()
+root.resizable(False, False)
 # TODO: show menu
 # TODO: have menu make user log in or create user
 # menu_driver = Menu(root)

@@ -1,6 +1,7 @@
 import tkinter as tk
 import os
 from PIL import ImageTk, Image
+from modules.cli.Tutorial import Tutorial
 
 class Menu(tk.Frame):
 
@@ -20,13 +21,16 @@ class Menu(tk.Frame):
         path = Image.open(self.photosPath + "PwnableLogo-08.png")
         resize = path.resize((300,65), Image.ANTIALIAS)
         self.photo = ImageTk.PhotoImage(resize)
-        label = tk.Label(image=self.photo)
+        self.label = tk.Label(image=self.photo)
         # label.image = photo
-        label.pack(pady=(25,0))
+        self.label.pack(pady=(25,0))
 
         # Module menu title
-        module_title = tk.Label(root, text = "Modules", font="Consolas 25 bold")
-        module_title.pack()
+        self.module_title = tk.Label(root, text = "Modules", font="Consolas 25 bold")
+        self.module_title.pack()
+
+        self.terminal_frame = tk.Frame()
+        self.terminal_frame.pack()
 
         # buttons configuration
         self.programming_button = tk.Button(width=20,
@@ -65,20 +69,25 @@ class Menu(tk.Frame):
                                 fg="white",
                                 bg="gray",
                                 command=self.load_menu)
-        # self.password_generator_button = tk.Button(width=17,
-        #                         text="Password Generator",
-        #                         font="Arial 18 bold",
-        #                         fg="white",
-        #                         bg="black")
-        # self.password_cracker_button = tk.Button(width=17,
-        #                         text="Password Cracker",
-        #                         font="Arial 18 bold",
-        #                         fg="white",
-        #                         bg="black")
 
     # programming module command
     def load_cli_module(self):
         print("Loading CLI Module...")
+        # removes previous buttons
+        self.master.title("Password Module")
+        self.programming_button.pack_forget()
+        self.password_button.pack_forget()
+        self.help_button.pack_forget()
+        self.networking_button.pack_forget()
+
+        # load new buttons
+        self.back_button.pack(side=tk.TOP, anchor="nw")
+        self.back_button.place(x=45, y=45)
+        self.module_title.pack_forget()
+        self.label.pack_forget()
+        Tutorial(self.terminal_frame)
+        self.terminal_frame.pack()
+
 
     # password module command
     def load_password_module(self):
@@ -102,9 +111,12 @@ class Menu(tk.Frame):
         self.master.title("Pwnable - Menu")
         self.back_button.pack_forget()
         self.back_button.place_forget()
+        self.label.pack()
+        self.module_title.pack()
         
         # load new buttons
         self.programming_button.pack()
         self.password_button.pack()
         self.networking_button.pack()
         self.help_button.pack()
+        self.terminal_frame.pack_forget()

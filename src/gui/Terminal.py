@@ -25,8 +25,8 @@ class Terminal(tk.Frame):
         self.command_var = tk.StringVar() # set up input tracking variable
 
         # add elements to the app root
-        self.window_title = "pwnable bash"
-        root.wm_title(self.window_title) # set window title
+        # self.window_title = "pwnable bash"
+        # root.wm_title(self.window_title) # set window title
         
         # add UI elements
         self.cli_output = tk.Text(self.master, bg="black", fg="green")
