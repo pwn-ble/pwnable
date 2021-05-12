@@ -2,6 +2,7 @@ import tkinter as tk
 import os
 from PIL import ImageTk, Image
 from modules.cli.Tutorial import Tutorial
+from gui.PasswordModule import PasswordModule
 
 class Menu(tk.Frame):
 
@@ -64,7 +65,7 @@ class Menu(tk.Frame):
         self.help_button.pack()
 
         self.back_button = tk.Button(width=4,
-                                text="Back",
+                                text="Menu",
                                 font="Consolas 8 bold",
                                 fg="white",
                                 bg="gray",
@@ -98,6 +99,9 @@ class Menu(tk.Frame):
         self.password_button.pack_forget()
         self.help_button.pack_forget()
         self.networking_button.pack_forget()
+        self.module_title.config(text = "Password Security")
+        self.load_pass = PasswordModule(self.master)
+        self.load_pass.pack()
 
         # load new buttons
         self.back_button.pack(side=tk.TOP, anchor="nw")
@@ -114,6 +118,8 @@ class Menu(tk.Frame):
         self.back_button.place_forget()
         self.label.pack()
         self.module_title.pack()
+        self.module_title.config(text = "Modules")
+        
         
         # load new buttons
         self.programming_button.pack()
