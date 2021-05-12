@@ -1,0 +1,3 @@
+In order to gain the Ip address of any website you must utilize the nslookup command. Do this by typing 'nslookup ______' with the address in the space (eg. google.com)
+
+To figure out the IP address of your device, use 'grep' command you learned earlier combined with the networking command 'ifconfig'

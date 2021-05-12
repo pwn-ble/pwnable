@@ -13,7 +13,7 @@ class Terminal(tk.Frame):
     prompt_label_str = "user@pwnable:" + os.getcwd() + " $ "
 
     # temp shell
-    temp_path = os.getcwd() + "/src/etc/cache/" # throws files in pwnable data cache
+    temp_path = os.getcwd() + "/etc/cache/" # throws files in pwnable data cache
     temp_cmd_file_path = temp_path + "/cmd.sh" # file for storing user's entered command for parsing TODO: merge with hist.txt
     hist_file_path = temp_path + "hist.txt" # file storing users previous commands
 
