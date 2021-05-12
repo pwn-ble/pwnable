@@ -22,12 +22,6 @@ class OverTheWire(tk.Tk):
         
         container = tk.Frame(self)
 
-        path = Image.open(self.photosPath + "PwnableLogo-08.png")
-        resize = path.resize((300,65), Image.ANTIALIAS)
-        self.photo = ImageTk.PhotoImage(resize)
-        label = tk.Label(image=self.photo)
-        label.pack(pady=(25,0))
-
         back_button = tk.Button(self, text="Home", width=6, command=lambda: self.show_frame(Level_Page))
         back_button.place(x=45,y=45)
 

@@ -8,7 +8,6 @@ from gui.Login import Login
 from gui.AddUser import AddUser
 from gui.Terminal import Terminal
 from gui.OverTheWire import OverTheWire
-from gui.BinaryConvert import *
 # Driver class imports
 from modules.cli.Tutorial import Tutorial
 # Misc class imports
