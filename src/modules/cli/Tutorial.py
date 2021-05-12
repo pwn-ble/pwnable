@@ -59,9 +59,10 @@ class Tutorial():
         """
         print("parsing command")
 
-        cmd_file = open(self.terminal.temp_cmd_file_path, 'r') # read users command from temp file
+        cmd_file = open(os.getcwd() + '/etc/cache/cmd.sh', 'r') # read users command from temp file
         self.current_command = cmd_file.read() # set to class memory
         cmd_file.close() # close file I/O
+        print(self.current_command)
         self.process_input(event)
 
     def process_input(self, event):
