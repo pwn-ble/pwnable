@@ -74,19 +74,20 @@ class Menu(tk.Frame):
     def load_cli_module(self):
         print("Loading CLI Module...")
         # removes previous buttons
-        self.master.title("Password Module")
-        self.programming_button.pack_forget()
-        self.password_button.pack_forget()
-        self.help_button.pack_forget()
-        self.networking_button.pack_forget()
+        # self.master.title("Password Module")
+        # self.programming_button.pack_forget()
+        # self.password_button.pack_forget()
+        # self.help_button.pack_forget()
+        # self.networking_button.pack_forget()
 
         # load new buttons
-        self.back_button.pack(side=tk.TOP, anchor="nw")
-        self.back_button.place(x=10, y=21)#back button placement so it isnt covering the terminal screen
-        self.module_title.pack_forget()
-        self.label.pack_forget()
-        self.terminal_frame = Tutorial(self.master)
-        self.terminal_frame.pack()
+        # self.back_button.pack(side=tk.TOP, anchor="nw")
+        # self.back_button.place(x=10, y=21)#back button placement so it isnt covering the terminal screen
+        # self.module_title.pack_forget()
+        # self.label.pack_forget()
+        #self.terminal_frame = 
+        Tutorial()
+        #self.terminal_frame.pack()
 
 
     # password module command
@@ -119,4 +120,4 @@ class Menu(tk.Frame):
         self.password_button.pack()
         self.networking_button.pack()
         self.help_button.pack()
-        self.terminal_frame.pack_forget()
+        # self.terminal_frame.pack_forget()

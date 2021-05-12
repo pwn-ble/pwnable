@@ -2,22 +2,22 @@ import tkinter as tk
 from gui.Terminal import Terminal # how to import classes in separate filesystem branch
 from gui.Popup import Popup
 from gui.Prompt import Prompt
-from modules.password.generator import generator
+from modules.password.generator import Generator
 import os
 
-class Tutorial(tk.Frame):
+class Tutorial():
 
     current_popup: Popup # is this sus?
     prompts: [str] = []
     commands: [str] = []
     prompt_index = 0
 
-    def __init__(self, root: tk.Tk):
-        tk.Frame.__init__(self, root) # tkinter Frame constructor
-        self.master = root # keep tkinter root for object reference
+    def __init__(self):
+        #tk.Frame.__init__(self, root) # tkinter Frame constructor
+        self.master = tk.Tk() # keep tkinter root for object reference
 
         # generate a random string to cat to target file
-        self.desired_pass = generator.gen(15)
+        self.desired_pass = Generator.gen(15)
         target_file = open(os.getcwd() + "/etc/password.txt", 'w')
         target_file.write(self.desired_pass)
         target_file.close()
