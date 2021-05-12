@@ -30,7 +30,7 @@ class Menu(tk.Frame):
         self.module_title.pack()
 
         self.terminal_frame = tk.Frame()
-        self.terminal_frame.pack()
+        # self.terminal_frame.pack()
 
         # buttons configuration
         self.programming_button = tk.Button(width=20,
