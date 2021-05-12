@@ -15,7 +15,7 @@ class Networking(tk.Frame):
         # assign attributesls
         self.master = root
 
-        self.master.title("Networking | Sending ICMP Packets to Destination")
+        self.master.title("Networking | Obtaining the IP address of your device")
         self.master.geometry('800x500')
 
         self.web_var=tk.StringVar()
