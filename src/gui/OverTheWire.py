@@ -1,19 +1,37 @@
 import tkinter as tk
 from PIL import ImageTk, Image
+import os
 
 # https://overthewire.org/wargames/bandit/
 
 label_font = ("Consolas", 25, "bold")
 button_font = ("Consolas", 12, "bold")
 text_font = ("Consolas", 10, "bold")
+
 class OverTheWire(tk.Tk):
+
+    photosPath = os.getcwd() + "/gui/PwnableLogos/"
 
     def __init__(self, *args, **kwargs):
 
         tk.Tk.__init__(self, *args, **kwargs)
+
+        
+
+        self.title("Pwnable - OverTheWire Walkthrough")        
         
         container = tk.Frame(self)
-        self.title("Pwnable - OverTheWire Walkthrough")
+
+        path = Image.open(self.photosPath + "PwnableLogo-08.png")
+        resize = path.resize((300,65), Image.ANTIALIAS)
+        self.photo = ImageTk.PhotoImage(resize)
+        label = tk.Label(image=self.photo)
+        label.pack(pady=(25,0))
+
+        back_button = tk.Button(self, text="Home", width=6, command=lambda: self.show_frame(Level_Page))
+        back_button.place(x=45,y=45)
+
+        
         tk.Tk.geometry(self,"800x480")
         container.pack(side="top",fill="both", expand=True)
         container.grid_rowconfigure(0, weight = 1)
@@ -82,12 +100,10 @@ class Explain(tk.Frame):
         self.textarea = tk.Text(self, height=10, width=60, yscrollcommand=scroll_y.set)
         scroll_y.pack(side="right", fill="y")
         scroll_y.config(command=self.textarea.yview)
-        self.textarea.insert("end","This game, like most other games, is organised in levels. You start at Level 0 and try to “beat” or “finish” it. Finishing a level results in information on how to start the next level. The pages on this website for “Level <X>” contain information on how to start level X from the previous level. E.g. The page for Level 1 has information on how to gain access from Level 0 to Level 1. All levels in this game have a page on this website, and they are all linked to from the sidemenu on the left of this page.")
+        self.textarea.insert("end", "\nThis game, like most other games, is organised in levels.\nYou start at Level 0 and try to “beat” or “finish” it.\nFinishing a level results in information on how to start the\nnext level. The buttons for “Level 0-10” contain information\non how to start level 1-10 from the previous level. E.g. The\npage for Level 1 has information on how to gain access from Level 0 to Level 1.")
         self.textarea.pack()
         self.textarea.config(state="disabled")
 
-        back_button = tk.Button(self, text="Back", command=lambda: controller.show_frame(Level_Page))
-        back_button.place(x=45,y=45)        
 
 class Start_Page(tk.Frame):
     def __init__(self, parent, controller):
@@ -101,34 +117,30 @@ class Start_Page(tk.Frame):
         description_label = tk.Label(self, 
                                     text=
                                     """
-                    The goal of this level is for you to log into the game using SSH.
-                    The host to which you need to connect is bandit.labs.overthewire.org, on port 2220.
-                    The username is bandit0 and the password is bandit0.
-                    Once logged in, go to the Level 1 page to find out how to beat Level 1.
+The goal of this level is for you to log into the game using SSH.
+The host to which you need to connect is bandit.labs.overthewire.org, on port 2220.
+The username is bandit0 and the password is bandit0.
+Once logged in, go to the Level 1 page to find out how to beat Level 1.
                                     """
-                                    , font=text_font, pady=50, justify="left")
-        description_label.pack(pady=200)
-        description_label.place(x=10,y=50)
+                                    , font=text_font, justify="left")
+        description_label.place(x=400,y=100,anchor="center")
         
         commands_button = tk.Button(self, text="Commands", command=self.commands)
-        commands_button.place(x=370, y=250)
+        commands_button.place(x=400, y=250, anchor="center")
 
         solution_button = tk.Button(self, text="Solution", command=self.solution)
-        solution_button.place(x=370, y=275)
+        solution_button.place(x=400, y=280, anchor="center")
 
-        back_button = tk.Button(self, text="Back", command=lambda: controller.show_frame(Level_Page))
-        back_button.place(x=45,y=45)
 
     def solution(self):
-        label = tk.Label(self, text="This is the answer")
-        label.place(x=300, y=250)
+        label = tk.Label(self, text="Type into the terminal: 'ssh bandit0@bandit.labs.overthewire.org -p 2220'")
+        label.place(x=400, y=340, anchor="center")
     
     def commands(self):
-        label1 = tk.Label(self, text="Here are some commands you may need to solve this level!")
         label2 = tk.Label(self, text="ssh")
-        label1.pack()
         label2.pack()
 
+# ls -la\ncat readme\nssh bandit1@localhost
 
 class Level_1(tk.Frame):
     def __init__(self, parent, controller):
@@ -140,29 +152,28 @@ class Level_1(tk.Frame):
         description_label = tk.Label(self, 
                                     text=
                                     """
-                The password for the next level is stored in a file called - located in the home directory.
+The password for the next level is stored in a file
+called "-" located in the home directory.
                                     """
-                                    , font=text_font, pady=50, justify="left")
-        description_label.pack(pady=200)
-        description_label.place(x=10,y=50)
+                                    , font=text_font, justify="left")
+        description_label.place(x=400,y=100,anchor="center")
+
+        command_label = tk.Label(self, text="Here are some commands you may need to solve this level!")
+        command_label.place(x=400, y=220, anchor="center")
         
         commands_button = tk.Button(self, text="Commands", command=self.commands)
-        commands_button.place(x=370, y=250)
+        commands_button.place(x=400, y=250, anchor="center")
 
         solution_button = tk.Button(self, text="Solution", command=self.solution)
-        solution_button.place(x=370, y=275)
+        solution_button.place(x=400, y=280, anchor="center")
 
-        back_button = tk.Button(self, text="Back", command=lambda: controller.show_frame(Level_Page))
-        back_button.place(x=45,y=45)
     
     def solution(self):
-        label = tk.Label(self, text="This is the answer")
-        label.place(x=300, y=250)
+        label = tk.Label(self, text="ls\ncat ./-\nssh bandit2@localhost")
+        label.place(x=400, y=340, anchor="center")
     
     def commands(self):
-        label1 = tk.Label(self, text="Here are some commands you may need to solve this level!")
         label2 = tk.Label(self, text="ls, cd, cat, file, du, find")
-        label1.pack()
         label2.pack()
 
 class Level_2(tk.Frame):
@@ -175,30 +186,28 @@ class Level_2(tk.Frame):
         description_label = tk.Label(self, 
                                     text=
                                     """
-                    The password for the next level is stored in a file called spaces in this filename located in the home directory.
-                                    """
+The password for the next level is stored in a file called 
+spaces in this filename located in the home directory."""
                                     , font=text_font, justify="left")
-        description_label.pack()
-        description_label.place(x=400,y=150,anchor="center")
+        description_label.place(x=400,y=100,anchor="center")
+
+        command_label = tk.Label(self, text="Here are some commands you may need to solve this level!")
+        command_label.place(x=400, y=220, anchor="center")
         
         commands_button = tk.Button(self, text="Commands", command=self.commands)
-        commands_button.place(x=370, y=250)
+        commands_button.place(x=400, y=250, anchor="center")
 
         solution_button = tk.Button(self, text="Solution", command=self.solution)
-        solution_button.place(x=370, y=275)
+        solution_button.place(x=400, y=280, anchor="center")
 
-        back_button = tk.Button(self, text="Back", command=lambda: controller.show_frame(Level_Page))
-        back_button.place(x=45,y=45)
     
 
     def solution(self):
-        label = tk.Label(self, text="This is the answer")
-        label.place(x=300, y=250)
+        label = tk.Label(self, text="ls\ncat 'spaces in this filename'\nssh bandit3@localhost")
+        label.place(x=400, y=340, anchor="center")
     
     def commands(self):
-        label1 = tk.Label(self, text="Here are some commands you may need to solve this level!")
         label2 = tk.Label(self, text="ls, cd, cat, file, du, find")
-        label1.pack()
         label2.pack()
 
 class Level_3(tk.Frame):
@@ -213,27 +222,25 @@ class Level_3(tk.Frame):
                                     """
                     The password for the next level is stored in a hidden file in the inhere directory.                
                                     """
-                                    , font=text_font, pady=50, justify="left")
-        description_label.pack(pady=200)
-        description_label.place(x=10,y=50)
+                                    , font=text_font, justify="left")
+        description_label.place(x=400,y=100,anchor="center")
+
+        command_label = tk.Label(self, text="Here are some commands you may need to solve this level!")
+        command_label.place(x=400, y=220, anchor="center")
         
         commands_button = tk.Button(self, text="Commands", command=self.commands)
-        commands_button.place(x=370, y=250)
+        commands_button.place(x=400, y=250, anchor="center")
 
         solution_button = tk.Button(self, text="Solution", command=self.solution)
-        solution_button.place(x=370, y=275)
+        solution_button.place(x=400, y=280, anchor="center")
 
-        back_button = tk.Button(self, text="Back", command=lambda: controller.show_frame(Level_Page))
-        back_button.place(x=45,y=45)
     
     def solution(self):
-        label = tk.Label(self, text="This is the answer")
-        label.place(x=300, y=250)
+        label = tk.Label(self, text="ls\ncd inhere/\nls -al\ncat .hidden\nssh bandit4@localhost")
+        label.place(x=400, y=340, anchor="center")
     
     def commands(self):
-        label1 = tk.Label(self, text="Here are some commands you may need to solve this level!")
         label2 = tk.Label(self, text="ls, cd, cat, file, du, find")
-        label1.pack()
         label2.pack()
 
 class Level_4(tk.Frame):
@@ -243,33 +250,33 @@ class Level_4(tk.Frame):
         label = tk.Label(self, text="Level 4", font=label_font)
         label.pack()
 
-        description_label = tk.Label(self, 
+        description_label = tk.Label(self,
                                     text=
                                     """
-                    The password for the next level is stored in the only human-readable file in the inhere directory.
+                    The password for the next level is stored in the only 
+                    human-readable file in the inhere directory.
+
                     Tip: if your terminal is messed up, try the “reset” command.                
                                     """
-                                    , font=text_font, pady=50, justify="left")
-        description_label.pack(pady=200)
-        description_label.place(x=10,y=50)
+                                    , font=text_font, justify="left")
+        description_label.place(x=400,y=100,anchor="center")
+
+        command_label = tk.Label(self, text="Here are some commands you may need to solve this level!")
+        command_label.place(x=400, y=220, anchor="center")
         
         commands_button = tk.Button(self, text="Commands", command=self.commands)
-        commands_button.place(x=370, y=250)
+        commands_button.place(x=400, y=250, anchor="center")
 
         solution_button = tk.Button(self, text="Solution", command=self.solution)
-        solution_button.place(x=370, y=275)
+        solution_button.place(x=400, y=280, anchor="center")
 
-        back_button = tk.Button(self, text="Back", command=lambda: controller.show_frame(Level_Page))
-        back_button.place(x=45,y=45)
     
     def solution(self):
-        label = tk.Label(self, text="This is the answer")
-        label.place(x=300, y=250)
+        label = tk.Label(self, text="ls -la\ncd inhere/\nls\nfile ./*\ncat ./-file07\nssh bandit5@localhost")
+        label.place(x=400, y=340, anchor="center")
     
     def commands(self):
-        label1 = tk.Label(self, text="Here are some commands you may need to solve this level!")
         label2 = tk.Label(self, text="ls, cd, cat, file, du, find")
-        label1.pack()
         label2.pack()
 
 class Level_5(tk.Frame):
@@ -282,34 +289,32 @@ class Level_5(tk.Frame):
         description_label = tk.Label(self, 
                                     text=
                                     """
-                    The password for the next level is stored in a file somewhere under the inhere directory and has all of the following properties:
+The password for the next level is stored in a file somewhere under 
+the inhere directory and has all of the following properties:
 
-                    human-readable
-                    1033 bytes in size
-                    not executable
-                
+                        human-readable
+                        1033 bytes in size
+                        not executable
                                     """
-                                    , font=text_font, pady=50, justify="left")
-        description_label.pack(pady=200)
-        description_label.place(x=10,y=50)
+                                    , font=text_font, justify="left")
+        description_label.place(x=400,y=120,anchor="center")
+
+        command_label = tk.Label(self, text="Here are some commands you may need to solve this level!")
+        command_label.place(x=400, y=220, anchor="center")
         
         commands_button = tk.Button(self, text="Commands", command=self.commands)
-        commands_button.place(x=370, y=250)
+        commands_button.place(x=400, y=250, anchor="center")
 
         solution_button = tk.Button(self, text="Solution", command=self.solution)
-        solution_button.place(x=370, y=275)
+        solution_button.place(x=400, y=280, anchor="center")
 
-        back_button = tk.Button(self, text="Back", command=lambda: controller.show_frame(Level_Page))
-        back_button.place(x=45,y=45)
     
     def solution(self):
-        label = tk.Label(self, text="This is the answer")
-        label.place(x=300, y=250)
+        label = tk.Label(self, text="cd inehre/\nls\nfind . -size 1033c\ncat ./maybehere07/.file2\nssh bandit6@localhost")
+        label.place(x=400, y=340, anchor="center")
     
     def commands(self):
-        label1 = tk.Label(self, text="Here are some commands you may need to solve this level!")
         label2 = tk.Label(self, text="ls, cd, cat, file, du, find")
-        label1.pack()
         label2.pack()
 
 class Level_6(tk.Frame):
@@ -322,34 +327,33 @@ class Level_6(tk.Frame):
         description_label = tk.Label(self, 
                                     text=
                                     """
-                    The password for the next level is stored somewhere on the server and has all of the following properties:
+
+The password for the next level is stored somewhere on the server 
+and has all of the following properties:
 
                     owned by user bandit7
                     owned by group bandit6
                     33 bytes in size
-                
                                     """
-                                    , font=text_font, pady=50, justify="left")
-        description_label.pack(pady=200)
-        description_label.place(x=10,y=50)
+                                    , font=text_font, justify="left")
+        description_label.place(x=400,y=120,anchor="center")
+
+        command_label = tk.Label(self, text="Here are some commands you may need to solve this level!")
+        command_label.place(x=400, y=220, anchor="center")
         
         commands_button = tk.Button(self, text="Commands", command=self.commands)
-        commands_button.place(x=370, y=250)
+        commands_button.place(x=400, y=250, anchor="center")
 
         solution_button = tk.Button(self, text="Solution", command=self.solution)
-        solution_button.place(x=370, y=275)
+        solution_button.place(x=400, y=280, anchor="center")
 
-        back_button = tk.Button(self, text="Back", command=lambda: controller.show_frame(Level_Page))
-        back_button.place(x=45,y=45)
     
     def solution(self):
-        label = tk.Label(self, text="This is the answer")
-        label.place(x=300, y=250)
+        label = tk.Label(self, text="find / -user bandit7 -group bandit6 -size 33c\ncat /var/lib/dpkg/info/bandit7.password\nssh bandit7@localhost")
+        label.place(x=400, y=340, anchor="center")
     
     def commands(self):
-        label1 = tk.Label(self, text="Here are some commands you may need to solve this level!")
         label2 = tk.Label(self, text="ls, cd, cat, file, du, find, grep")
-        label1.pack()
         label2.pack()
 
 class Level_7(tk.Frame):
@@ -364,27 +368,25 @@ class Level_7(tk.Frame):
                                     """
                     The password for the next level is stored in the file data.txt next to the word millionth                
                                     """
-                                    , font=text_font, pady=50, justify="left")
-        description_label.pack(pady=200)
-        description_label.place(x=10,y=50)
+                                    , font=text_font, justify="left")
+        description_label.place(x=400,y=100,anchor="center")
+
+        command_label = tk.Label(self, text="Here are some commands you may need to solve this level!")
+        command_label.place(x=400, y=220, anchor="center")
         
         commands_button = tk.Button(self, text="Commands", command=self.commands)
-        commands_button.place(x=370, y=250)
+        commands_button.place(x=400, y=250, anchor="center")
 
         solution_button = tk.Button(self, text="Solution", command=self.solution)
-        solution_button.place(x=370, y=275)
+        solution_button.place(x=400, y=280, anchor="center")
 
-        back_button = tk.Button(self, text="Back", command=lambda: controller.show_frame(Level_Page))
-        back_button.place(x=45,y=45)
     
     def solution(self):
-        label = tk.Label(self, text="This is the answer")
-        label.place(x=300, y=250)
+        label = tk.Label(self, text="ls\ncat data.txt | grep millionth\n ssh bandit8@localhost")
+        label.place(x=400, y=340, anchor="center")
     
     def commands(self):
-        label1 = tk.Label(self, text="Here are some commands you may need to solve this level!")
         label2 = tk.Label(self, text="grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd")
-        label1.pack()
         label2.pack()
 
 class Level_8(tk.Frame):
@@ -397,29 +399,28 @@ class Level_8(tk.Frame):
         description_label = tk.Label(self, 
                                     text=
                                     """
-                    The password for the next level is stored in the file data.txt and is the only line of text that occurs only once                
+The password for the next level is stored in the file data.txt 
+and is the only line of text that occurs only once                
                                     """
-                                    , font=text_font, pady=50, justify="left")
-        description_label.pack(pady=200)
-        description_label.place(x=10,y=50)
+                                    , font=text_font, justify="left")
+        description_label.place(x=400,y=100,anchor="center")
+
+        command_label = tk.Label(self, text="Here are some commands you may need to solve this level!")
+        command_label.place(x=400, y=220, anchor="center")
         
         commands_button = tk.Button(self, text="Commands", command=self.commands)
-        commands_button.place(x=370, y=250)
+        commands_button.place(x=400, y=250, anchor="center")
 
         solution_button = tk.Button(self, text="Solution", command=self.solution)
-        solution_button.place(x=370, y=275)
+        solution_button.place(x=400, y=280, anchor="center")
 
-        back_button = tk.Button(self, text="Back", command=lambda: controller.show_frame(Level_Page))
-        back_button.place(x=45,y=45)
     
     def solution(self):
-        label = tk.Label(self, text="This is the answer")
-        label.place(x=300, y=250)
+        label = tk.Label(self, text="cat data.txt | sort | uniq -u\nssh bandit9@localhost")
+        label.place(x=400, y=340, anchor="center")
     
     def commands(self):
-        label1 = tk.Label(self, text="Here are some commands you may need to solve this level!")
         label2 = tk.Label(self, text="grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd")
-        label1.pack()
         label2.pack()
 
 class Level_9(tk.Frame):
@@ -432,29 +433,28 @@ class Level_9(tk.Frame):
         description_label = tk.Label(self, 
                                     text=
                                     """
-                    The password for the next level is stored in the file data.txt in one of the few human-readable strings, preceded by several ‘=’ characters.                
+                        The password for the next level is stored in the file data.txt
+                        in one of the few human-readable strings, preceded by several ‘=’ characters.                
                                     """
-                                    , font=text_font, pady=50, justify="left")
-        description_label.pack(pady=200)
-        description_label.place(x=10,y=50)
+                                    , font=text_font, justify="left")
+        description_label.place(x=400,y=100,anchor="center")
+
+        command_label = tk.Label(self, text="Here are some commands you may need to solve this level!")
+        command_label.place(x=400, y=220, anchor="center")
         
         commands_button = tk.Button(self, text="Commands", command=self.commands)
-        commands_button.place(x=370, y=250)
+        commands_button.place(x=400, y=250, anchor="center")
 
         solution_button = tk.Button(self, text="Solution", command=self.solution)
-        solution_button.place(x=370, y=275)
+        solution_button.place(x=400, y=280, anchor="center")
 
-        back_button = tk.Button(self, text="Back", command=lambda: controller.show_frame(Level_Page))
-        back_button.place(x=45,y=45)
     
     def solution(self):
-        label = tk.Label(self, text="This is the answer")
-        label.place(x=300, y=250)
+        label = tk.Label(self, text="ls\nstrings data.txt | grep =\nssh bandit10@localhost")
+        label.place(x=400, y=340, anchor="center")
     
     def commands(self):
-        label1 = tk.Label(self, text="Here are some commands you may need to solve this level!")
         label2 = tk.Label(self, text="grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd")
-        label1.pack()
         label2.pack()
 
 class Level_10(tk.Frame):
@@ -467,29 +467,28 @@ class Level_10(tk.Frame):
         description_label = tk.Label(self, 
                                     text=
                                     """
-                    The password for the next level is stored in the file data.txt, which contains base64 encoded data                
+The password for the next level is stored in 
+the file data.txt, which contains base64 encoded data
                                     """
-                                    , font=text_font, pady=50, justify="left")
-        description_label.pack(pady=200)
-        description_label.place(x=10,y=50)
+                                    , font=text_font, justify="left")
+        description_label.place(x=400,y=100,anchor="center")
+
+        command_label = tk.Label(self, text="Here are some commands you may need to solve this level!")
+        command_label.place(x=400, y=220, anchor="center")
         
         commands_button = tk.Button(self, text="Commands", command=self.commands)
-        commands_button.place(x=370, y=250)
+        commands_button.place(x=400, y=250, anchor="center")
 
         solution_button = tk.Button(self, text="Solution", command=self.solution)
-        solution_button.place(x=370, y=275)
+        solution_button.place(x=400, y=280, anchor="center")
 
-        back_button = tk.Button(self, text="Back", command=lambda: controller.show_frame(Level_Page))
-        back_button.place(x=45,y=45)
     
     def solution(self):
-        label = tk.Label(self, text="This is the answer")
-        label.place(x=300, y=250)
+        label = tk.Label(self, text="ls\ncat data.txt | base64 --decode\nssh bandit11@localhost")
+        label.place(x=400, y=340, anchor="center")
     
     def commands(self):
-        label1 = tk.Label(self, text="Here are some commands you may need to solve this level!")
         label2 = tk.Label(self, text="grep, sort, uniq, strings, base64, tr, tar, gzip, bzip2, xxd")
-        label1.pack()
         label2.pack()
 
 

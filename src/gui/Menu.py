@@ -2,7 +2,8 @@ import tkinter as tk
 import os
 from PIL import ImageTk, Image
 from gui.OverTheWire import OverTheWire
-from gui.BinaryConvert import BinaryConvert
+from gui.BinaryConvert import *
+# ,BinaryConvert
 
 class Menu(tk.Frame):
 
@@ -53,13 +54,20 @@ class Menu(tk.Frame):
                                 font="Consolas 20 bold",
                                 fg="white",
                                 bg="black",
-                                command=self.load_converter)
+                                command=self.load_overthewire)
+        self.binary_convert_button = tk.Button(width=20,
+                                            text="Converter",
+                                            font="Consolas 20 bold",
+                                            fg="white",
+                                            bg="black",
+                                            command=self.load_converter)
 
         # display buttons
         self.programming_button.pack()
         self.password_button.pack()
         self.networking_button.pack()
         self.help_button.pack()
+        self.binary_convert_button.pack()
 
         self.back_button = tk.Button(width=6,
                                 text="Back",
@@ -90,6 +98,7 @@ class Menu(tk.Frame):
         self.password_button.pack_forget()
         self.help_button.pack_forget()
         self.networking_button.pack_forget()
+        self.binary_convert_button.pack_forget()
 
         # load new buttons
         self.back_button.pack(side=tk.TOP, anchor="nw")
@@ -110,14 +119,28 @@ class Menu(tk.Frame):
         self.password_button.pack()
         self.networking_button.pack()
         self.help_button.pack()
+        self.binary_convert_button.pack()
 
     def load_converter(self):
-        self.programming_button.pack_forget()
-        self.password_button.pack_forget()
-        self.help_button.pack_forget()
-        self.networking_button.pack_forget()
+        # self.programming_button.pack_forget()
+        # self.password_button.pack_forget()
+        # self.help_button.pack_forget()
+        # self.networking_button.pack_forget()
+        # self.binary_convert_button.pack_forget()
 
-        self.back_button.pack(side=tk.TOP, anchor="nw")
-        self.back_button.place(x=45, y=45)
-        self.bin_frame = BinaryConvert(self.master)
-        self.bin_frame.pack()
+        # self.back_button.pack(side=tk.TOP, anchor="nw")
+        # self.back_button.place(x=45, y=45)
+        #self.bin_frame = 
+        BinaryConvert().self.master
+        #self.bin_frame.pack()
+    
+    def load_overthewire(self):
+        # self.programming_button.pack_forget()
+        # self.password_button.pack_forget()
+        # self.help_button.pack_forget()
+        # self.networking_button.pack_forget()
+        # self.binary_convert_button.pack_forget()
+
+        # self.back_button.pack(side=tk.TOP, anchor="nw")
+        # self.back_button.place(x=45, y=45)
+        OverTheWire()

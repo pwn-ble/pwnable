@@ -104,10 +104,6 @@ class BinaryConvert():
             tk.messagebox.showerror("Error", "Invalid conversion")
             print(ex, file=sys.stderr)
 
-        except Exception as ex:
-            tk.messagebox.showerror("Error", "Invalid conversion")
-            print(ex, file=sys.stderr)
-
     def _set_values(self, bin_value, dec_value, hex_value):
         if not bin_value.startswith("0b"):
             self.bin_value = "0b" + bin_value
@@ -120,7 +116,8 @@ class BinaryConvert():
 
     def mainloop(self):
         self.master.mainloop()
-if __name__ == "__main__":
-    # root = tk.Tk()
-    root = BinaryConvert()
-    root.mainloop()
+
+# if __name__ == "__main__":
+#     # root = tk.Tk()
+#     root = BinaryConvert()
+#     root.mainloop()
