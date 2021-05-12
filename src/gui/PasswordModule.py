@@ -54,7 +54,7 @@ class PasswordModule(tk.Frame):
         self.next_btn.config(command=self.next3)
         
     def next3(self):
-        info_text= "The main type of attack we will \nfocus on is a 'brute force' attack. \nA brute force attack is when a \nhacker will try various passwords \nover and over until one is works."
+        info_text= "The main type of attack we will \nfocus on is a 'brute force' attack. \nA brute force attack is when a \nhacker will try various passwords \nover and over until one works."
         self.info_output.config(text=info_text, width=45, height=7)
         self.next_btn.config(command=self.next4)
         
