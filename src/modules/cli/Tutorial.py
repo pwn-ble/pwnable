@@ -2,7 +2,7 @@ import tkinter as tk
 from gui.Terminal import Terminal # how to import classes in separate filesystem branch
 from gui.Popup import Popup
 from gui.Prompt import Prompt
-from modules.password.generator import Generator
+from modules.password.generator import generator
 import os
 
 class Tutorial():
@@ -17,7 +17,7 @@ class Tutorial():
         self.master = tk.Tk() # keep tkinter root for object reference
 
         # generate a random string to cat to target file
-        self.desired_pass = Generator.gen(15)
+        self.desired_pass = generator.gen(15)
         target_file = open(os.getcwd() + "/etc/password.txt", 'w')
         target_file.write(self.desired_pass)
         target_file.close()
@@ -91,5 +91,6 @@ class Tutorial():
         self.current_popup.set_desired_command(cmd) # attach command we want the user to enter
 
     def try_level_pass(self, event):
-        if (self.password_prompt.check()): 
-            self.master.winfo_children().destroy()
+        return
+        #if (self.password_prompt.check()): 
+            #self.master.winfo_children().

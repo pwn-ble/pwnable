@@ -1,9 +1,0 @@
-[Desktop Entry]
-Type=Application
-Encoding=UTF-8
-Name=Pwnable
-Exec=sh /home/pi/.config/autostart/app.sh
-Icon=/home/pi/pwnable/src/gui/PwnableLogos/thumbnail_PwnableLogo-06.png
-StartupNotify=true
-Terminal=false
-Name[en_US]=Pwnable
